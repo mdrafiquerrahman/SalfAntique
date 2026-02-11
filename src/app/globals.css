@@ -98,3 +98,11 @@ body {
     radial-gradient(900px 700px at 75% 20%, rgba(197,160,89,0.1), transparent 62%);
   background-blend-mode: multiply, multiply;
 }
+
+@utility scrollbar-hide {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

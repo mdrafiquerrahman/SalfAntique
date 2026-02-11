@@ -41,11 +41,11 @@ export default function ProductCard({ product }: { product: Product }) {
         </OrnateFrame>
 
         <div className="mt-5 flex items-baseline justify-between">
-          <h3 className="font-serif text-lg tracking-wide">{product.name}</h3>
-          <span className="text-muted-gold text-[9px] uppercase tracking-[0.2em] opacity-60">{product.era}</span>
+          <h3 className="font-serif text-base lg:text-lg tracking-wide">{product.name}</h3>
+          <span className="text-muted-gold text-[8px] lg:text-[9px] uppercase tracking-[0.2em] opacity-60">{product.era}</span>
         </div>
         <div className="mt-2 flex items-center justify-between">
-          <span className="font-serif text-base text-muted-gold/90">
+          <span className="font-serif text-sm lg:text-base text-muted-gold/90">
             {new Intl.NumberFormat('en-IN', {
               style: 'currency',
               currency: 'INR',
@@ -53,7 +53,7 @@ export default function ProductCard({ product }: { product: Product }) {
             }).format(product.price)}
           </span>
         </div>
-        <p className="mt-4 font-sans text-[11px] text-parchment/50 leading-relaxed line-clamp-2 italic">
+        <p className="mt-4 font-sans text-[10px] lg:text-[11px] text-parchment/50 leading-relaxed line-clamp-2 italic">
           {product.story}
         </p>
         <div className="mt-8 flex items-center justify-between">
@@ -64,11 +64,11 @@ export default function ProductCard({ product }: { product: Product }) {
               addToCart(product);
               router.push('/cart');
             }}
-            className="bg-muted-gold/10 hover:bg-muted-gold/25 border border-muted-gold/20 text-[9px] text-muted-gold uppercase tracking-widest px-6 py-2.5 transition-all rounded-full"
+            className="bg-muted-gold/10 hover:bg-muted-gold/25 border border-muted-gold/20 text-[8px] lg:text-[10px] text-muted-gold uppercase tracking-widest px-5 py-2 transition-all rounded-full"
           >
             Add to Bag
           </button>
-          <span className="font-serif text-muted-gold/60 text-[11px] italic group-hover:text-muted-gold/90 transition-colors">
+          <span className="font-serif text-muted-gold/60 text-[10px] lg:text-[11px] italic group-hover:text-muted-gold/90 transition-colors">
             Discover provenance →
           </span>
         </div>
