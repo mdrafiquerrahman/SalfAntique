@@ -1,26 +1,100 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #141312;
+  --foreground: #e5e5e1;
+  --color-offblack: #141312;
+  --color-parchment: #e5e5e1;
+  --color-muted-gold: #c5a059;
+  --color-emerald: #0f2d1f;
+  --color-brilliant-green: #0f2d1f;
+  --color-burgundy: #2b0e15;
+  --color-neutral-bg: #fdfdfc;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-offblack: var(--color-offblack);
+  --color-parchment: var(--color-parchment);
+  --color-muted-gold: var(--color-muted-gold);
+  --color-emerald: var(--color-emerald);
+  --color-brilliant-green: var(--color-brilliant-green);
+  --color-burgundy: var(--color-burgundy);
+  --color-neutral-bg: var(--color-neutral-bg);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #141312;
+  /* Simplified grain effect using a single radial gradient + noise */
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  background-blend-mode: normal;
+  background-size: auto, 100px 100px;
+  color: var(--color-parchment);
+}
+
+.grainy {
+  position: relative;
+}
+.grainy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+.inner-glow {
+  box-shadow:
+    inset 0 0 0.75rem rgba(197, 160, 89, 0.14),
+    0 0 1.5rem rgba(0, 0, 0, 0.45);
+}
+
+.tapestry-onyx-grain {
+  background-color: #141312;
+  background-image:
+    radial-gradient(1200px 800px at 15% 0%, rgba(255,255,255,0.05), transparent 60%),
+    radial-gradient(900px 700px at 85% 20%, rgba(255,255,255,0.03), transparent 62%);
+  background-blend-mode: soft-light, soft-light;
+}
+.tapestry-burgundy-grain {
+  background-color: #2b0e15;
+  background-image:
+    radial-gradient(1200px 800px at 20% 0%, rgba(255,215,0,0.08), transparent 60%),
+    radial-gradient(900px 700px at 80% 20%, rgba(255,215,0,0.06), transparent 62%);
+  background-blend-mode: overlay, overlay;
+}
+.tapestry-sapphire-grain {
+  background-color: #0d1c33;
+  background-image:
+    radial-gradient(1200px 800px at 15% 0%, rgba(173,216,230,0.08), transparent 60%),
+    radial-gradient(900px 700px at 85% 20%, rgba(173,216,230,0.06), transparent 62%);
+  background-blend-mode: soft-light, soft-light;
+}
+.tapestry-emerald-grain {
+  background-color: #081a12;
+  background-image:
+    radial-gradient(1200px 800px at 20% 0%, rgba(144,238,144,0.04), transparent 60%),
+    radial-gradient(900px 700px at 80% 20%, rgba(144,238,144,0.03), transparent 62%);
+  background-blend-mode: soft-light, soft-light;
+}
+.tapestry-parchment-grain {
+  background-color: #deddd8;
+  background-image:
+    radial-gradient(1200px 800px at 25% 0%, rgba(197,160,89,0.12), transparent 60%),
+    radial-gradient(900px 700px at 75% 20%, rgba(197,160,89,0.1), transparent 62%);
+  background-blend-mode: multiply, multiply;
 }
