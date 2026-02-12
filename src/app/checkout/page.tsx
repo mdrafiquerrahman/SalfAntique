@@ -23,12 +23,21 @@ export default function CheckoutPage() {
   };
 
   const createOrder = async () => {
-    const response = await fetch("/api/razorpay/order", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount: cartTotal }),
-    });
-    return await response.json();
+    try {
+      const response = await fetch("/api/razorpay/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: cartTotal }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.details || data.error || "Failed to create order");
+      }
+      return data;
+    } catch (error: any) {
+      console.error("Order creation fetch failed:", error);
+      throw error;
+    }
   };
 
   const handlePayment = async (e: React.FormEvent) => {
@@ -48,35 +57,40 @@ export default function CheckoutPage() {
         description: "Antique Jewelry Acquisition",
         order_id: order.id,
         handler: async function (response: any) {
-          // Verify payment
-          const verifyRes = await fetch("/api/razorpay/verify", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              razorpay_order_id: response.razorpay_order_id,
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_signature: response.razorpay_signature,
-              customerDetails: {
-                name: formData.name,
-                email: formData.email,
-                phone: formData.phone,
-              },
-              items: cart.map(item => ({
-                name: item.name,
-                quantity: item.quantity,
-                price: item.price,
-              })),
-              totalAmount: cartTotal,
-            }),
-          });
+          try {
+            // Verify payment
+            const verifyRes = await fetch("/api/razorpay/verify", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                customerDetails: {
+                  name: formData.name,
+                  email: formData.email,
+                  phone: formData.phone,
+                },
+                items: cart.map(item => ({
+                  name: item.name,
+                  quantity: item.quantity,
+                  price: item.price,
+                })),
+                totalAmount: cartTotal,
+              }),
+            });
 
-          const verifyData = await verifyRes.json();
+            const verifyData = await verifyRes.json();
 
-          if (verifyData.status === "ok") {
-            setIsSuccess(true);
-            clearCart();
-          } else {
-            alert("Payment verification failed. Please contact support.");
+            if (verifyData.status === "ok") {
+              setIsSuccess(true);
+              clearCart();
+            } else {
+              alert("Payment verification failed. Please contact support.");
+            }
+          } catch (verifyError) {
+            console.error("Verification failed:", verifyError);
+            alert("Payment verification error. Please check your email for confirmation.");
           }
         },
         prefill: {
@@ -89,14 +103,18 @@ export default function CheckoutPage() {
         },
       };
 
+      if (!(window as any).Razorpay) {
+        throw new Error("Razorpay SDK not loaded. Please check your internet connection.");
+      }
+
       const rzp = new (window as any).Razorpay(options);
       rzp.on("payment.failed", function (response: any) {
         alert("Payment failed: " + response.error.description);
       });
       rzp.open();
-    } catch (error) {
+    } catch (error: any) {
       console.error("Payment initiation failed:", error);
-      alert("Failed to initiate payment. Please try again.");
+      alert(error.message || "Failed to initiate payment. Please try again.");
     } finally {
       setIsProcessing(false);
     }
