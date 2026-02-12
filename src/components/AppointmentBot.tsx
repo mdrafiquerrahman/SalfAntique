@@ -7,9 +7,11 @@ type Message = {
   id: string;
   text: string;
   sender: "bot" | "user";
+  options?: string[];
 };
 
 type FormData = {
+  purpose: string;
   name: string;
   phone: string;
   email: string;
@@ -18,10 +20,19 @@ type FormData = {
 };
 
 const QUESTIONS = [
+  { 
+    field: "purpose", 
+    question: "Greetings. I am your Salf Antqe curator. How may I assist you today?",
+    options: ["Schedule Appointment", "Inquire about a piece", "General Inquiry"]
+  },
   { field: "name", question: "I would be honored to assist you. May I ask for your full name?" },
   { field: "phone", question: "A pleasure. What is the best phone number to reach you at?" },
   { field: "email", question: "And your preferred email address for the appointment details?" },
-  { field: "jewelryType", question: "Which of our collections has captured your interest? (e.g., Victorian Rings, Rare Gemstones, Bespoke Jewelry)" },
+  { 
+    field: "jewelryType", 
+    question: "Which of our collections has captured your interest?",
+    options: ["Victorian Rings", "Rare Gemstones", "Bespoke Jewelry", "Antique Necklaces", "Other"]
+  },
   { field: "message", question: "Are there any specific details or historical periods you would like to discuss during our consultation?" },
 ];
 
@@ -34,6 +45,9 @@ export default function AppointmentBot() {
     const handleOpenBot = (e: any) => {
       setIsOpen(true);
       if (e.detail?.message) {
+        // If it's a specific inquiry, skip the purpose question
+        setFormData(prev => ({ ...prev, purpose: "Inquire about a piece" }));
+        
         // Add user message from event
         const userMsg: Message = { 
           id: Date.now().toString(), 
@@ -53,6 +67,7 @@ export default function AppointmentBot() {
               sender: "bot" 
             }
           ]);
+          setStep(1); // Move to name question
         }, 800);
       }
     };
@@ -73,15 +88,22 @@ export default function AppointmentBot() {
   }, []);
 
   const [messages, setMessages] = useState<Message[]>([
-    { id: "1", text: "Greetings. I am your Salf Antqe curator. I would be honored to assist you. May I ask for your full name to begin?", sender: "bot" },
+    { 
+      id: "1", 
+      text: QUESTIONS[0].question, 
+      sender: "bot",
+      options: QUESTIONS[0].options 
+    },
   ]);
   const [formData, setFormData] = useState<FormData>({
+    purpose: "",
     name: "",
     phone: "",
     email: "",
     jewelryType: "",
     message: "",
   });
+
   const [inputValue, setInputValue] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
@@ -94,23 +116,32 @@ export default function AppointmentBot() {
     }
   }, [messages]);
 
-  const handleSend = async () => {
-    if (!inputValue.trim()) return;
+  const handleOptionClick = (option: string) => {
+    processInput(option);
+  };
 
+  const handleSend = () => {
+    if (!inputValue.trim()) return;
+    processInput(inputValue);
+    setInputValue("");
+  };
+
+  const processInput = async (value: string) => {
     const currentField = QUESTIONS[step].field;
-    const userMessage: Message = { id: Date.now().toString(), text: inputValue, sender: "user" };
+    const userMessage: Message = { id: Date.now().toString(), text: value, sender: "user" };
     
     setMessages((prev) => [...prev, userMessage]);
-    setFormData((prev) => ({ ...prev, [currentField]: inputValue }));
-    setInputValue("");
+    setFormData((prev) => ({ ...prev, [currentField]: value }));
 
     if (step < QUESTIONS.length - 1) {
       // Show next question after a small delay
       setTimeout(() => {
+        const nextQuestion = QUESTIONS[step + 1];
         const nextBotMessage: Message = {
           id: (Date.now() + 1).toString(),
-          text: QUESTIONS[step + 1].question,
+          text: nextQuestion.question,
           sender: "bot",
+          options: nextQuestion.options,
         };
         setMessages((prev) => [...prev, nextBotMessage]);
         setStep(step + 1);
@@ -120,11 +151,11 @@ export default function AppointmentBot() {
       setTimeout(() => {
         const finishingMessage: Message = {
           id: (Date.now() + 1).toString(),
-          text: "Perfect. I'm processing your appointment request now...",
+          text: "Perfect. I'm processing your request now...",
           sender: "bot",
         };
         setMessages((prev) => [...prev, finishingMessage]);
-        submitAppointment({ ...formData, [currentField]: inputValue });
+        submitAppointment({ ...formData, [currentField]: value });
       }, 600);
     }
   };
@@ -223,24 +254,47 @@ export default function AppointmentBot() {
 
             {/* Chat Area */}
             <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-6 bg-white">
-              {messages.map((msg) => (
-                <motion.div
-                  key={msg.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className={`flex ${msg.sender === "bot" ? "justify-start" : "justify-end"}`}
-                >
-                  <div
-                    className={`max-w-[85%] rounded-2xl px-5 py-3.5 text-[13px] leading-relaxed ${
-                      msg.sender === "bot"
-                        ? "bg-gray-50 text-gray-800 font-serif italic border border-gray-100/50"
-                        : "bg-gray-900 text-white font-medium"
-                    }`}
-                  >
-                    {msg.text}
+              {messages.map((msg, idx) => {
+                const isLastBotMessage = msg.sender === "bot" && idx === messages.length - 1;
+                return (
+                  <div key={msg.id} className="space-y-4">
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className={`flex ${msg.sender === "bot" ? "justify-start" : "justify-end"}`}
+                    >
+                      <div
+                        className={`max-w-[85%] rounded-2xl px-5 py-3.5 text-[13px] leading-relaxed ${
+                          msg.sender === "bot"
+                            ? "bg-gray-50 text-gray-800 font-serif italic border border-gray-100/50"
+                            : "bg-gray-900 text-white font-medium"
+                        }`}
+                      >
+                        {msg.text}
+                      </div>
+                    </motion.div>
+                    
+                    {/* Render options if this is the last bot message and it has options */}
+                    {isLastBotMessage && msg.options && !isSubmitting && !isComplete && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex flex-wrap gap-2 pl-2"
+                      >
+                        {msg.options.map((option) => (
+                          <button
+                            key={option}
+                            onClick={() => handleOptionClick(option)}
+                            className="rounded-full border border-muted-gold/30 bg-white px-4 py-2 text-[11px] font-medium text-gray-700 transition-all hover:border-muted-gold hover:bg-muted-gold/5 active:scale-95"
+                          >
+                            {option}
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
                   </div>
-                </motion.div>
-              ))}
+                );
+              })}
               {isSubmitting && (
                 <div className="flex justify-start">
                   <div className="bg-gray-50 px-4 py-3 rounded-2xl border border-gray-100">
@@ -276,7 +330,20 @@ export default function AppointmentBot() {
                       setTimeout(() => {
                         setIsComplete(false);
                         setStep(0);
-                        setMessages([{ id: "1", text: "Greetings. I am your Salf Antqe curator. Would you like to schedule a private viewing or ask about a specific piece?", sender: "bot" }]);
+                        setFormData({
+                          purpose: "",
+                          name: "",
+                          phone: "",
+                          email: "",
+                          jewelryType: "",
+                          message: "",
+                        });
+                        setMessages([{ 
+                          id: "1", 
+                          text: QUESTIONS[0].question, 
+                          sender: "bot",
+                          options: QUESTIONS[0].options 
+                        }]);
                       }, 1000);
                     }}
                     className="mt-2 text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase hover:text-gray-900 transition-colors"
