@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "../context/CartContext";
 
 export default function NavBar() {
-  const { cartCount } = useCart();
+  const { cartCount, setIsCartOpen } = useCart();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -24,8 +24,38 @@ export default function NavBar() {
     }
   };
 
+  const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
+
+  const categories = {
+    jewelry: [
+      { name: "All Jewelry", href: "/jewelry" },
+      { name: "Necklaces", href: "/jewelry?category=necklace" },
+      { name: "Earrings", href: "/jewelry?category=earrings" },
+      { name: "Bangles & Bracelets", href: "/jewelry?category=bangles" },
+      { name: "Rings", href: "/jewelry?category=rings" },
+      { name: "Pendants", href: "/jewelry?category=pendants" },
+    ],
+    collections: [
+      { name: "All Collections", href: "/collections" },
+      { name: "Antique", href: "/jewelry?era=antique" },
+      { name: "Victorian", href: "/jewelry?era=victorian" },
+      { name: "Art Deco", href: "/jewelry?era=art-deco" },
+      { name: "Bridal", href: "/jewelry?category=bridal" },
+    ],
+    gemstones: [
+      { name: "All Gemstones", href: "/gemstones" },
+      { name: "Diamonds", href: "/diamonds" },
+      { name: "Emeralds", href: "/gemstones?type=emerald" },
+      { name: "Rubies", href: "/gemstones?type=ruby" },
+      { name: "Sapphires", href: "/gemstones?type=sapphire" },
+    ]
+  };
+
   return (
-    <div className="z-50 w-full bg-white text-gray-800">
+    <div 
+      className="z-50 w-full bg-white text-gray-800"
+      onMouseLeave={() => setActiveMegaMenu(null)}
+    >
       {/* Main Header */}
       <header className="border-b border-gray-100">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -108,8 +138,11 @@ export default function NavBar() {
                 </svg>
               </Link>
 
-              {/* Cart Link */}
-              <Link href="/cart" prefetch={false} className="relative hover:text-brilliant-green transition-colors">
+              {/* Cart Button */}
+              <button 
+                onClick={() => setIsCartOpen(true)}
+                className="relative hover:text-brilliant-green transition-colors"
+              >
                 <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
@@ -118,7 +151,7 @@ export default function NavBar() {
                     {cartCount}
                   </span>
                 )}
-              </Link>
+              </button>
             </div>
           </div>
 
@@ -193,12 +226,106 @@ export default function NavBar() {
 
           {/* Bottom Row: Navigation */}
           <nav className="hidden lg:flex justify-center gap-8 lg:gap-12 pb-4 text-[12px] font-semibold tracking-widest text-gray-700 uppercase">
-            <Link href="/gemstones" prefetch={false} className="hover:text-brilliant-green border-b-2 border-transparent hover:border-brilliant-green pb-1 transition-all whitespace-nowrap">Gemstones</Link>
-            <Link href="/jewelry" prefetch={false} className="hover:text-brilliant-green border-b-2 border-transparent hover:border-brilliant-green pb-1 transition-all whitespace-nowrap">Jewelry</Link>
+            <div 
+              className="relative group"
+              onMouseEnter={() => setActiveMegaMenu('gemstones')}
+            >
+              <Link href="/gemstones" prefetch={false} className="hover:text-brilliant-green border-b-2 border-transparent hover:border-brilliant-green pb-1 transition-all whitespace-nowrap">Gemstones</Link>
+            </div>
+            <div 
+              className="relative group"
+              onMouseEnter={() => setActiveMegaMenu('jewelry')}
+            >
+              <Link href="/jewelry" prefetch={false} className="hover:text-brilliant-green border-b-2 border-transparent hover:border-brilliant-green pb-1 transition-all whitespace-nowrap">Jewelry</Link>
+            </div>
+            <div 
+              className="relative group"
+              onMouseEnter={() => setActiveMegaMenu('collections')}
+            >
+              <Link href="/collections" prefetch={false} className="hover:text-brilliant-green border-b-2 border-transparent hover:border-brilliant-green pb-1 transition-all whitespace-nowrap">Collections</Link>
+            </div>
             <Link href="/gifts" prefetch={false} className="hover:text-brilliant-green border-b-2 border-transparent hover:border-brilliant-green pb-1 transition-all whitespace-nowrap">Gifts</Link>
             <Link href="/about" prefetch={false} className="hover:text-brilliant-green border-b-2 border-transparent hover:border-brilliant-green pb-1 transition-all whitespace-nowrap">About</Link>
           </nav>
         </div>
+
+        {/* Mega Menu Dropdown */}
+        <AnimatePresence>
+          {activeMegaMenu && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="absolute left-0 w-full bg-white border-b border-gray-100 shadow-xl z-40 overflow-hidden"
+              onMouseEnter={() => setActiveMegaMenu(activeMegaMenu)}
+              onMouseLeave={() => setActiveMegaMenu(null)}
+            >
+              <div className="mx-auto max-w-7xl px-8 py-10">
+                <div className="grid grid-cols-4 gap-12">
+                  <div className="col-span-1">
+                    <h3 className="text-brilliant-green text-[11px] font-bold uppercase tracking-[0.2em] mb-6">
+                      Shop by {activeMegaMenu}
+                    </h3>
+                    <ul className="space-y-4">
+                      {categories[activeMegaMenu as keyof typeof categories].map((item) => (
+                        <li key={item.name}>
+                          <Link 
+                            href={item.href} 
+                            className="text-gray-600 hover:text-brilliant-green text-[13px] font-medium transition-colors"
+                            onClick={() => setActiveMegaMenu(null)}
+                          >
+                            {item.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="col-span-2 grid grid-cols-2 gap-8">
+                    <div className="relative aspect-[4/3] rounded-xl overflow-hidden group cursor-pointer">
+                      <Image 
+                        src="/necklace-coral.jpg" 
+                        alt="Featured" 
+                        fill 
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-end p-6">
+                        <div className="text-white">
+                          <p className="text-[10px] uppercase tracking-widest mb-1">New Collection</p>
+                          <h4 className="font-serif text-xl">The Heritage Series</h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="relative aspect-[4/3] rounded-xl overflow-hidden group cursor-pointer">
+                      <Image 
+                        src="/necklace-amber-disc.jpg" 
+                        alt="Featured" 
+                        fill 
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-end p-6">
+                        <div className="text-white">
+                          <p className="text-[10px] uppercase tracking-widest mb-1">Best Seller</p>
+                          <h4 className="font-serif text-xl">Antique Gold Pendants</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-span-1 bg-gray-50 rounded-xl p-6 flex flex-col justify-center text-center">
+                    <h4 className="font-serif text-2xl text-gray-900 mb-2">Exquisite Craftsmanship</h4>
+                    <p className="text-[12px] text-gray-500 leading-relaxed mb-6">Discover pieces that tell a story of timeless beauty and heritage.</p>
+                    <Link 
+                      href="/jewelry" 
+                      className="inline-block bg-brilliant-green text-white text-[10px] uppercase tracking-widest px-6 py-3 rounded-full hover:bg-opacity-90 transition-all"
+                    >
+                      View All
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
     </div>
   );

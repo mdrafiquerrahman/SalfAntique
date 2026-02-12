@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import ProductCard from "./ProductCard";
-import { products } from "../data/products";
+import { products, Category, Era } from "../data/products";
 
 const container = {
   hidden: { opacity: 0 },
@@ -16,10 +16,55 @@ const item = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.25 } },
 };
 
-export default function GalleryGrid({ era }: { era?: string }) {
-  const filteredProducts = era 
-    ? products.filter(p => p.era.toLowerCase().replace(" ", "-") === era.toLowerCase())
-    : products;
+interface GalleryGridProps {
+  era?: string;
+  category?: string;
+  sort?: string;
+}
+
+export default function GalleryGrid({ era, category, sort }: GalleryGridProps) {
+  let filteredProducts = [...products];
+
+  if (era) {
+    filteredProducts = filteredProducts.filter(
+      p => p.era.toLowerCase().replace(" ", "-") === era.toLowerCase()
+    );
+  }
+
+  if (category) {
+    filteredProducts = filteredProducts.filter(
+      p => p.category.toLowerCase() === category.toLowerCase()
+    );
+  }
+
+  if (sort) {
+    switch (sort) {
+      case 'price-low':
+        filteredProducts.sort((a, b) => a.price - b.price);
+        break;
+      case 'price-high':
+        filteredProducts.sort((a, b) => b.price - a.price);
+        break;
+      case 'newest':
+        // For now, newest is just reverse alphabetical or original order
+        filteredProducts.reverse();
+        break;
+    }
+  }
+
+  if (filteredProducts.length === 0) {
+    return (
+      <div className="py-20 text-center">
+        <p className="text-gray-400 font-serif italic">No pieces found matching your criteria.</p>
+        <button 
+          onClick={() => window.location.href = '/jewelry'}
+          className="mt-6 text-brilliant-green text-[11px] uppercase tracking-widest font-bold"
+        >
+          View All Jewelry
+        </button>
+      </div>
+    );
+  }
 
   return (
     <motion.div

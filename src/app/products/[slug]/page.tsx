@@ -33,7 +33,8 @@ export default function ProductPage({
   if (!product) return notFound();
 
   const router = useRouter();
-  const { addToCart } = useCart();
+  const { addToCart, setIsCartOpen } = useCart();
+  const [quantity, setQuantity] = React.useState(1);
   const [pincode, setPincode] = React.useState("");
   const [pincodeStatus, setPincodeStatus] = React.useState<"idle" | "checking" | "available" | "unavailable">("idle");
 
@@ -162,8 +163,50 @@ export default function ProductPage({
                 </div>
               </div>
               
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-8">
                 <div className="h-[1px] w-24 bg-muted-gold/20" />
+                
+                {/* Cart Actions */}
+                <div className="space-y-6">
+                  <div className="flex items-center gap-6">
+                    <div className="flex items-center border border-muted-gold/20 rounded-sm bg-muted-gold/[0.02]">
+                      <button 
+                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                        className="p-3 text-muted-gold hover:bg-muted-gold/10 transition-colors"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M20 12H4" /></svg>
+                      </button>
+                      <span className="w-12 text-center text-parchment font-serif text-lg">{quantity}</span>
+                      <button 
+                        onClick={() => setQuantity(quantity + 1)}
+                        className="p-3 text-muted-gold hover:bg-muted-gold/10 transition-colors"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 4v16m8-8H4" /></svg>
+                      </button>
+                    </div>
+                    <button 
+                      onClick={() => {
+                        addToCart(product, quantity);
+                        setIsCartOpen(true);
+                      }}
+                      className="flex-1 py-4 px-8 border border-muted-gold text-muted-gold text-[11px] uppercase tracking-[0.3em] font-bold hover:bg-muted-gold hover:text-offblack transition-all duration-500"
+                    >
+                      Add to Archive
+                    </button>
+                  </div>
+                  
+                  <button 
+                    onClick={() => {
+                      addToCart(product, quantity);
+                      router.push('/checkout');
+                    }}
+                    className="w-full py-5 bg-brilliant-green text-parchment text-[11px] uppercase tracking-[0.3em] font-bold hover:bg-emerald-900 transition-all duration-500 shadow-xl shadow-black/40 flex items-center justify-center gap-3"
+                  >
+                    Buy It Now
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                  </button>
+                </div>
+
                 <p className="text-muted-gold/40 text-[10px] italic font-serif tracking-wide">Secure global shipping and private consultation included.</p>
               </div>
             </motion.div>
@@ -272,6 +315,38 @@ export default function ProductPage({
                       </div>
                     </div>
                   </motion.div>
+                ))}
+              </div>
+            </section>
+
+            {/* Customer Reviews Section */}
+            <section className="space-y-16">
+              <div className="flex items-center justify-between">
+                <h2 className="font-serif text-xs uppercase tracking-[0.4em] text-muted-gold/30">Client Testimonials</h2>
+                <div className="flex items-center gap-2">
+                  <div className="flex text-muted-gold">
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <svg key={s} className="w-3 h-3 fill-current" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="text-muted-gold/60 text-[10px] uppercase tracking-widest">4.9/5 Rating</span>
+                </div>
+              </div>
+              
+              <div className="space-y-12">
+                {[
+                  { name: "Eleanor V.", date: "Dec 2025", review: "The craftsmanship is even more breathtaking in person. A true heirloom piece that feels like it carries centuries of history." },
+                  { name: "James L.", date: "Nov 2025", review: "Acquisition process was seamless and professional. The provenance documentation provided is exceptionally detailed." }
+                ].map((rev, i) => (
+                  <div key={i} className="border-b border-muted-gold/10 pb-12 last:border-0">
+                    <div className="flex justify-between items-start mb-4">
+                      <span className="font-serif text-parchment text-lg">{rev.name}</span>
+                      <span className="text-muted-gold/30 text-[10px] uppercase tracking-widest">{rev.date}</span>
+                    </div>
+                    <p className="font-sans text-parchment/50 text-sm leading-relaxed italic">"{rev.review}"</p>
+                  </div>
                 ))}
               </div>
             </section>
@@ -386,6 +461,28 @@ export default function ProductPage({
           </div>
         </div>
       </div>
+      {/* Sticky Mobile Add to Cart */}
+      <motion.div 
+        initial={{ y: 100 }}
+        animate={{ y: 0 }}
+        className="fixed bottom-0 left-0 right-0 p-4 bg-offblack/80 backdrop-blur-xl border-t border-muted-gold/20 lg:hidden z-[60]"
+      >
+        <div className="flex items-center gap-4">
+          <div className="flex-1">
+            <p className="text-parchment font-serif text-sm truncate">{product.name}</p>
+            <p className="text-muted-gold text-xs">₹{product.price.toLocaleString()}</p>
+          </div>
+          <button 
+            onClick={() => {
+              addToCart(product, 1);
+              setIsCartOpen(true);
+            }}
+            className="px-6 py-3 bg-brilliant-green text-parchment text-[10px] uppercase tracking-widest font-bold"
+          >
+            Add to Archive
+          </button>
+        </div>
+      </motion.div>
     </div>
   );
 }

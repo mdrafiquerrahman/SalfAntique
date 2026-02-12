@@ -19,7 +19,8 @@ export async function POST(request: Request) {
     const resend = new Resend(apiKey);
     const { data, error } = await resend.emails.send({
       from: 'Salf Antqe <onboarding@resend.dev>',
-      to: ['rafiquerrahman66@gmail.com'],
+      to: ['rafiquerrahman66@gmail.com'], // Reverting to your verified email for Sandbox mode
+      replyTo: email, // The customer's email goes here so you can reply to them
       subject: `New Virtual Appointment Request - ${name}`,
       html: `
         <div style="font-family: serif; padding: 20px; color: #1a1a15;">

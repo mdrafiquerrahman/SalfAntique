@@ -259,9 +259,12 @@ export default function CartPage() {
                       </div>
                     </div>
 
-                    <button className="w-full bg-muted-gold py-5 font-serif text-offblack font-bold uppercase text-[10px] tracking-[0.4em] hover:bg-parchment transition-all duration-500 shadow-xl">
+                    <Link 
+                      href="/checkout"
+                      className="block w-full text-center bg-muted-gold py-5 font-serif text-offblack font-bold uppercase text-[10px] tracking-[0.4em] hover:bg-parchment transition-all duration-500 shadow-xl"
+                    >
                       Proceed to Checkout
-                    </button>
+                    </Link>
 
                     <div className="flex flex-col gap-6 pt-4">
                       <div className="flex items-center justify-between gap-4 opacity-60 hover:opacity-100 transition-all duration-500">

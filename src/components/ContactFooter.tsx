@@ -1,8 +1,103 @@
 "use client";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function ContactFooter() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setStatus("loading");
+    
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to subscribe');
+      }
+
+      setStatus("success");
+      setEmail("");
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch (error) {
+      console.error("Subscription error:", error);
+      alert(error instanceof Error ? error.message : "Something went wrong. Please try again later.");
+      setStatus("idle");
+    }
+  };
+
   return (
-    <footer id="contact" className="border-t border-muted-gold/30 bg-offblack">
+    <footer id="contact" className="border-t border-muted-gold/30 bg-offblack overflow-hidden">
+      {/* Newsletter Section */}
+      <div className="border-b border-muted-gold/10">
+        <div className="mx-auto max-w-7xl px-8 py-20 flex flex-col lg:flex-row items-center justify-between gap-12">
+          <div className="max-w-xl text-center lg:text-left">
+            <h3 className="font-serif text-3xl text-parchment mb-4 italic">Join the Inner Circle</h3>
+            <p className="text-parchment/50 text-sm tracking-wide leading-relaxed">
+              Subscribe to receive exclusive early access to our newest antique acquisitions, 
+              historical narratives, and private collection releases.
+            </p>
+          </div>
+          
+          <div className="w-full lg:w-auto min-w-[320px] lg:min-w-[450px]">
+            <AnimatePresence mode="wait">
+              {status === "success" ? (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="bg-muted-gold/5 border border-muted-gold/20 p-6 text-center"
+                >
+                  <p className="font-serif italic text-muted-gold text-lg mb-2">Welcome to the Archive</p>
+                  <p className="text-parchment/40 text-[10px] uppercase tracking-widest">A confirmation has been sent to your email.</p>
+                </motion.div>
+              ) : (
+                <motion.form 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onSubmit={handleSubmit}
+                  className="flex flex-col sm:flex-row gap-4"
+                >
+                  <input 
+                    type="email" 
+                    placeholder="Your email address" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="flex-1 bg-muted-gold/[0.03] border border-muted-gold/20 px-6 py-4 font-serif italic text-parchment focus:outline-none focus:border-muted-gold/60 transition-all text-sm"
+                    required
+                    disabled={status === "loading"}
+                  />
+                  <button 
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="bg-muted-gold/90 px-8 py-4 font-serif text-offblack text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-parchment transition-all shadow-lg whitespace-nowrap disabled:opacity-50 flex items-center justify-center min-w-[140px]"
+                  >
+                    {status === "loading" ? (
+                      <svg className="animate-spin h-4 w-4 text-offblack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                    ) : "Subscribe"}
+                  </button>
+                </motion.form>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+
       <div className="mx-auto max-w-5xl px-6 py-10">
         <div className="font-serif text-parchment text-lg">Contact</div>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-parchment/80">
