@@ -4,6 +4,7 @@ import NewArrivals from "../components/NewArrivals";
 import TrendingNow from "../components/TrendingNow";
 import Assurance from "../components/Assurance";
 import ShopByCategory from "../components/ShopByCategory";
+import FAQ from "../components/FAQ";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <TrendingNow />
       </div>
       <NewArrivals />
+      <FAQ />
       <Assurance />
     </div>
   );
