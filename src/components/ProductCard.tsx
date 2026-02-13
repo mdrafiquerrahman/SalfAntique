@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import type { Product } from "../data/products";
 import { useCart } from "../context/CartContext";
-import { Heart } from "lucide-react";
+import { Heart, Search, ShoppingCart } from "lucide-react";
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
@@ -19,34 +19,58 @@ export default function ProductCard({ product }: { product: Product }) {
       transition={{ duration: 0.5 }}
       className="flex flex-col group"
     >
-      <Link
-        href={`/products/${product.slug}`}
-        prefetch={false}
-        className="relative aspect-square overflow-hidden rounded-xl bg-[#f5f5f5] border border-gray-100 transition-all duration-300 hover:shadow-md"
-      >
+      <div className="relative aspect-square overflow-hidden rounded-2xl bg-[#f9f9f9] border border-gray-100/50 transition-all duration-300">
         {/* Ready to Ship Badge */}
         <div className="absolute top-3 left-3 z-10">
-          <span className="bg-[#5d735d] text-white text-[10px] px-2 py-1 rounded-sm font-medium tracking-tight">
+          <span className="bg-[#5d735d] text-white text-[9px] px-2 py-1 rounded-md font-semibold tracking-wide uppercase">
             Ready to Ship
           </span>
         </div>
 
         {/* Product Image */}
-        <div className="relative h-full w-full p-8">
+        <Link
+          href={`/products/${product.slug}`}
+          prefetch={false}
+          className="relative h-full w-full block p-6"
+        >
           {product.image ? (
             <Image
               src={product.image}
               alt={product.name}
               fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 25vw, 20vw"
-              className="object-contain transition-transform duration-500 group-hover:scale-110"
+              sizes="(max-width: 768px) 50vw, 25vw"
+              className="object-contain transition-transform duration-500 group-hover:scale-105"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
               draggable={false}
             />
           ) : (
-            <div className="h-full w-full bg-gray-200 rounded-lg" />
+            <div className="h-full w-full bg-gray-100 rounded-lg" />
           )}
+        </Link>
+
+        {/* Action Icons */}
+        <div className="absolute right-3 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-10">
+          <button 
+            className="p-2 rounded-full bg-gray-200/50 hover:bg-white transition-all shadow-sm"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              router.push(`/products/${product.slug}`);
+            }}
+          >
+            <Search className="w-4 h-4 text-gray-700" />
+          </button>
+          <button 
+            className="p-2 rounded-full bg-gray-200/50 hover:bg-white transition-all shadow-sm"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              addToCart(product);
+            }}
+          >
+            <ShoppingCart className="w-4 h-4 text-gray-700" />
+          </button>
         </div>
 
         {/* Heart Icon */}
@@ -54,21 +78,20 @@ export default function ProductCard({ product }: { product: Product }) {
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            // Wishlist logic would go here
           }}
-          className="absolute bottom-3 left-3 z-10 p-1.5 rounded-full hover:bg-white/80 transition-all"
+          className="absolute bottom-3 left-3 z-10 p-1.5 transition-all"
         >
-          <Heart className="w-5 h-5 text-gray-500 hover:text-red-500 transition-colors" />
+          <Heart className="w-6 h-6 text-gray-600 hover:text-red-500 transition-colors stroke-[1.5px]" />
         </button>
-      </Link>
+      </div>
 
-      {/* Product Info below the card */}
-      <div className="mt-4 flex flex-col gap-1 px-1">
-        <div className="flex justify-between items-start gap-2">
-          <h3 className="font-serif text-sm text-gray-800 leading-tight group-hover:text-muted-gold transition-colors line-clamp-1">
-            {product.name}
-          </h3>
-          <span className="font-sans text-xs font-semibold text-gray-900 shrink-0">
+      {/* Product Info */}
+      <div className="mt-3 flex flex-col gap-0.5">
+        <h3 className="text-[13px] font-semibold text-gray-900 leading-tight line-clamp-2 min-h-[2.5rem] font-sans">
+          {product.name}
+        </h3>
+        <div className="flex items-center gap-2">
+          <span className="text-[14px] font-bold text-gray-900 font-sans">
             {new Intl.NumberFormat('en-IN', {
               style: 'currency',
               currency: 'INR',
@@ -76,21 +99,6 @@ export default function ProductCard({ product }: { product: Product }) {
             }).format(product.price)}
           </span>
         </div>
-        <p className="text-[10px] text-gray-400 uppercase tracking-widest font-medium">
-          {product.era}
-        </p>
-        
-        <button 
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            addToCart(product);
-            router.push('/cart');
-          }}
-          className="mt-2 w-full py-2 bg-gray-900 text-white text-[10px] uppercase tracking-widest font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0"
-        >
-          Quick Add
-        </button>
       </div>
     </motion.div>
   );

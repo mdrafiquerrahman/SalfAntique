@@ -30,6 +30,7 @@ export interface Product {
   secondaryImages?: string[];
   hallmarkImage?: string;
   timeline: EraTimeline[];
+  isReadyToShip?: boolean;
   specs: {
     metal: string;
     weight: string;
@@ -67,7 +68,8 @@ export const products: Product[] = [
       weight: "145g",
       condition: "Excellent Antique",
       origin: "Indian Subcontinent"
-    }
+    },
+    isReadyToShip: true
   },
   {
     slug: "stippled-gold-bead-necklace",
@@ -91,7 +93,8 @@ export const products: Product[] = [
       weight: "210g",
       condition: "Pristine Antique",
       origin: "Indian Subcontinent"
-    }
+    },
+    isReadyToShip: true
   },
   {
     slug: "himalayan-mandala-inlay-pendant",
@@ -121,7 +124,8 @@ export const products: Product[] = [
       weight: "185g",
       condition: "Excellent Antique",
       origin: "Himalayan Region / North India"
-    }
+    },
+    isReadyToShip: true
   },
   {
     slug: "antique-seed-pearl-multi-strand-mala",
@@ -151,7 +155,8 @@ export const products: Product[] = [
       weight: "120g",
       condition: "Excellent Antique",
       origin: "Indian Subcontinent"
-    }
+    },
+    isReadyToShip: true
   },
   {
     slug: "tribal-amber-disc-pendant-necklace",
