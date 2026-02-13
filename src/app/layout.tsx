@@ -6,6 +6,7 @@ import NavBar from "../components/NavBar";
 import ContactFooter from "../components/ContactFooter";
 import AppointmentBot from "../components/AppointmentBot";
 import CartDrawer from "../components/CartDrawer";
+import WhatsAppButton from "../components/WhatsAppButton";
 import { CartProvider } from "../context/CartContext";
 
 const inter = Inter({
@@ -42,6 +43,7 @@ export default function RootLayout({
           <TransitionLayout>{children}</TransitionLayout>
           <ContactFooter />
           <AppointmentBot />
+          <WhatsAppButton />
         </CartProvider>
       </body>
     </html>

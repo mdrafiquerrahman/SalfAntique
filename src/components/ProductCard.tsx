@@ -21,11 +21,13 @@ export default function ProductCard({ product }: { product: Product }) {
     >
       <div className="relative aspect-square overflow-hidden rounded-2xl bg-[#f9f9f9] border border-gray-100/50 transition-all duration-300">
         {/* Ready to Ship Badge */}
-        <div className="absolute top-3 left-3 z-10">
-          <span className="bg-[#5d735d] text-white text-[9px] px-2 py-1 rounded-md font-semibold tracking-wide uppercase">
-            Ready to Ship
-          </span>
-        </div>
+        {product.isReadyToShip && (
+          <div className="absolute top-3 left-3 z-10">
+            <span className="bg-[#5d735d] text-white text-[9px] px-2 py-1 rounded font-medium tracking-wide">
+              Ready to Ship
+            </span>
+          </div>
+        )}
 
         {/* Product Image */}
         <Link
@@ -79,19 +81,19 @@ export default function ProductCard({ product }: { product: Product }) {
             e.preventDefault();
             e.stopPropagation();
           }}
-          className="absolute bottom-3 left-3 z-10 p-1.5 transition-all"
+          className="absolute bottom-3 left-3 z-10 p-1 transition-all"
         >
-          <Heart className="w-6 h-6 text-gray-600 hover:text-red-500 transition-colors stroke-[1.5px]" />
+          <Heart className="w-5 h-5 text-gray-700 hover:text-red-500 transition-colors stroke-[1.5px]" />
         </button>
       </div>
 
       {/* Product Info */}
       <div className="mt-3 flex flex-col gap-0.5">
-        <h3 className="text-[13px] font-semibold text-gray-900 leading-tight line-clamp-2 min-h-[2.5rem] font-sans">
+        <h3 className="text-[14px] font-medium text-gray-900 leading-tight line-clamp-2 min-h-[2.5rem] font-sans">
           {product.name}
         </h3>
         <div className="flex items-center gap-2">
-          <span className="text-[14px] font-bold text-gray-900 font-sans">
+          <span className="text-[15px] font-bold text-gray-900 font-sans">
             {new Intl.NumberFormat('en-IN', {
               style: 'currency',
               currency: 'INR',

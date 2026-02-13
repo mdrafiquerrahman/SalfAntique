@@ -308,5 +308,89 @@ export const products: Product[] = [
       origin: "Western India"
     },
     isReadyToShip: true
+  },
+  {
+    slug: "avinka-antique-earrings",
+    name: "Avinka Antique Chandbali Earrings",
+    category: "earrings",
+    era: "Victorian",
+    price: 1669,
+    currency: "INR",
+    story: "Traditional Chandbali earrings featuring intricate gold work and delicate bead drops, inspired by the moon's graceful silhouette.",
+    gemstones: [],
+    image: "/necklace-coral.jpg",
+    secondaryImages: [],
+    hallmarkImage: "",
+    timeline: [],
+    specs: {
+      metal: "Antique Gold Tone",
+      weight: "25g",
+      condition: "New Antique Style",
+      origin: "India"
+    },
+    isReadyToShip: true
+  },
+  {
+    slug: "madhavi-antique-bracelet",
+    name: "Madhavi Antique Bracelet",
+    category: "bracelets",
+    era: "Art Deco",
+    price: 1379,
+    currency: "INR",
+    story: "A stunning hand-crafted bracelet featuring traditional peacock motifs and vibrant stone embellishments.",
+    gemstones: [],
+    image: "/necklace-stippled.jpg",
+    secondaryImages: [],
+    hallmarkImage: "",
+    timeline: [],
+    specs: {
+      metal: "Gilded Brass",
+      weight: "45g",
+      condition: "New Antique Style",
+      origin: "India"
+    },
+    isReadyToShip: true
+  },
+  {
+    slug: "swara-antique-studs",
+    name: "Swara Antique Stud Earrings",
+    category: "earrings",
+    era: "Victorian",
+    price: 1489,
+    currency: "INR",
+    story: "Exquisite sun-inspired stud earrings with a central deity motif, radiating traditional elegance.",
+    gemstones: [],
+    image: "/necklace-mandala.jpg",
+    secondaryImages: [],
+    hallmarkImage: "",
+    timeline: [],
+    specs: {
+      metal: "Antique Gold Tone",
+      weight: "15g",
+      condition: "New Antique Style",
+      origin: "India"
+    },
+    isReadyToShip: true
+  },
+  {
+    slug: "veda-antique-studs",
+    name: "Veda Antique Stud Earrings",
+    category: "earrings",
+    era: "Victorian",
+    price: 1489,
+    currency: "INR",
+    story: "Matching Veda studs featuring intricate craftsmanship and a timeless gold finish.",
+    gemstones: [],
+    image: "/necklace-coral.jpg",
+    secondaryImages: [],
+    hallmarkImage: "",
+    timeline: [],
+    specs: {
+      metal: "Antique Gold Tone",
+      weight: "15g",
+      condition: "New Antique Style",
+      origin: "India"
+    },
+    isReadyToShip: true
   }
 ];
