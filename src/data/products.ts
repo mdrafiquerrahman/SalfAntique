@@ -216,6 +216,97 @@ export const products: Product[] = [
       weight: "165g",
       condition: "Excellent Antique",
       origin: "Himalayan Region / North India"
-    }
+    },
+    isReadyToShip: true
+  },
+  {
+    slug: "royal-rajput-kundan-necklace",
+    name: "Royal Rajput Kundan & Emerald Haar",
+    category: "necklace",
+    era: "Art Deco",
+    price: 4500,
+    currency: "INR",
+    story: "A majestic Kundan Haar that epitomizes the grandeur of Rajputana royalty. This piece features a central medallion of uncut diamonds (Polki) set in pure gold foil, surrounded by deep green emerald droplets. The multi-strand pearl chain adds a layer of sophistication, making it a perfect heirloom piece for ceremonial occasions.",
+    curatorNote: "The use of emeralds alongside traditional Kundan work reflects the influence of Mughal aesthetics on Rajput jewelry. This piece is a rare example of the transition from purely traditional to more stylized Art Deco influences in the early 20th century.",
+    gemstones: [
+      {
+        name: "Emerald & Polki",
+        color: "Forest Green & Translucent",
+        provenance: "Rajasthan, India"
+      }
+    ],
+    image: "/necklace-coral.jpg",
+    secondaryImages: [],
+    hallmarkImage: "",
+    timeline: [
+      { year: "1925", event: "Rajputana Artistic Peak", description: "The era of grand Kundan sets commissioned by princely states." }
+    ],
+    specs: {
+      metal: "22K Gold Plated Brass",
+      weight: "180g",
+      condition: "Pristine",
+      origin: "Jaipur, India"
+    },
+    isReadyToShip: true
+  },
+  {
+    slug: "victorian-gold-jhumkas",
+    name: "Antique Victorian Filigree Jhumkas",
+    category: "earrings",
+    era: "Victorian",
+    price: 2800,
+    currency: "INR",
+    story: "These exquisite Jhumkas feature the delicate filigree work characteristic of the Victorian era. The bell-shaped drops are adorned with tiny gold beads and a central ruby cabochon, suspended from an ornate floral stud. The intricate craftsmanship speaks to the romanticism of the late 19th century.",
+    curatorNote: "Victorian Jhumkas are a unique fusion of European filigree techniques and traditional Indian bell-shaped earring silhouettes. This pair is particularly notable for its light, airy structure despite its significant size.",
+    gemstones: [
+      {
+        name: "Ruby Cabochon",
+        color: "Deep Pigeon Blood Red",
+        provenance: "Burma (Myanmar)"
+      }
+    ],
+    image: "/necklace-stippled.jpg",
+    secondaryImages: [],
+    hallmarkImage: "",
+    timeline: [
+      { year: "1890", event: "Filigree Popularity", description: "The height of delicate wire-work in colonial-era jewelry." }
+    ],
+    specs: {
+      metal: "Gilded Silver",
+      weight: "45g",
+      condition: "Excellent Antique",
+      origin: "South India"
+    },
+    isReadyToShip: false
+  },
+  {
+    slug: "art-deco-ruby-ring",
+    name: "Art Deco Geometric Ruby Statement Ring",
+    category: "rings",
+    era: "Art Deco",
+    price: 3200,
+    currency: "INR",
+    story: "A bold statement ring that showcases the geometric precision of the Art Deco movement. A central emerald-cut ruby is flanked by stepped gold shoulders, creating a powerful, architectural silhouette. This piece reflects the modernism and optimism of the 1920s.",
+    curatorNote: "This ring is a departure from the organic forms of the Victorian era, embracing the machine-age aesthetics of Art Deco. The ruby's deep saturation contrasts beautifully with the polished gold surfaces.",
+    gemstones: [
+      {
+        name: "Emerald-cut Ruby",
+        color: "Vibrant Crimson",
+        provenance: "Mozambique"
+      }
+    ],
+    image: "/necklace-mandala.jpg",
+    secondaryImages: [],
+    hallmarkImage: "",
+    timeline: [
+      { year: "1930", event: "Art Deco Movement", description: "The global shift towards geometric and architectural jewelry design." }
+    ],
+    specs: {
+      metal: "18K Gold Plated",
+      weight: "18g",
+      condition: "Like New",
+      origin: "Western India"
+    },
+    isReadyToShip: true
   }
 ];

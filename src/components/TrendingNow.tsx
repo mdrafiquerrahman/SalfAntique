@@ -17,27 +17,30 @@ export default function TrendingNow() {
     <section className="bg-white py-8 md:py-12">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         {/* Mobile Tab/Filter Bar */}
-        <div className="flex md:hidden items-center gap-6 mb-8 overflow-x-auto scrollbar-hide">
-          <button 
-            onClick={() => setActiveTab("trending")}
-            className={`whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
-              activeTab === "trending" 
-                ? "bg-gray-200 text-gray-900" 
-                : "text-gray-500 hover:text-gray-900"
-            }`}
-          >
-            Trending Now
-          </button>
-          <button 
-            onClick={() => setActiveTab("ready")}
-            className={`whitespace-nowrap text-sm font-semibold transition-all ${
-              activeTab === "ready" 
-                ? "bg-gray-200 text-gray-900 px-5 py-2.5 rounded-full" 
-                : "text-gray-500 hover:text-gray-900"
-            }`}
-          >
-            Ready To Ship
-          </button>
+        <div className="flex md:hidden items-center mb-8">
+          <div className="flex items-center bg-transparent border border-gray-100 rounded-xl p-1">
+            <button 
+              onClick={() => setActiveTab("trending")}
+              className={`px-6 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                activeTab === "trending" 
+                  ? "bg-gray-100 text-gray-900 shadow-sm" 
+                  : "text-gray-500 hover:text-gray-900"
+              }`}
+            >
+              Trending Now
+            </button>
+            <div className="w-px h-4 bg-gray-200 mx-2" />
+            <button 
+              onClick={() => setActiveTab("ready")}
+              className={`px-6 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                activeTab === "ready" 
+                  ? "bg-gray-100 text-gray-900 shadow-sm" 
+                  : "text-gray-500 hover:text-gray-900"
+              }`}
+            >
+              Ready To Ship
+            </button>
+          </div>
         </div>
 
         <div className="hidden md:flex items-baseline justify-between mb-12">
