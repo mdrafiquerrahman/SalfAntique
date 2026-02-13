@@ -209,7 +209,6 @@ export default function AppointmentBot() {
             onClick={() => setIsOpen(true)}
             className="group relative flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-[#5d735d] shadow-[0_8px_30px_rgba(93,115,93,0.3)] border border-[#5d735d]/20 transition-all duration-300"
           >
-            <div className="absolute inset-0 rounded-full bg-[#5d735d]/20 animate-ping group-hover:hidden" />
             <div className="relative flex flex-col items-center">
               <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
