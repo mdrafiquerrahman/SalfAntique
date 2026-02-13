@@ -66,16 +66,18 @@ export default function ProductCard({ product }: { product: Product }) {
           </button>
           
           {/* Bottom Full-width Add to cart - Slides up */}
-          <button 
-            className="absolute bottom-0 left-0 right-0 py-3.5 bg-white/95 backdrop-blur-md text-gray-900 text-[13px] font-bold tracking-wide pointer-events-auto hover:bg-[#5d735d] hover:text-white transition-all duration-500 translate-y-full group-hover:translate-y-0"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              addToCart(product);
-            }}
-          >
-            ADD TO CART
-          </button>
+          <div className="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition-all duration-500 pointer-events-auto">
+            <button 
+              className="w-full py-3 bg-white/95 backdrop-blur-md text-gray-900 text-[13px] font-bold tracking-wide rounded-xl shadow-lg hover:bg-[#5d735d] hover:text-white transition-all duration-300"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                addToCart(product);
+              }}
+            >
+              ADD TO CART
+            </button>
+          </div>
         </div>
 
         {/* Mobile Action Icons */}
