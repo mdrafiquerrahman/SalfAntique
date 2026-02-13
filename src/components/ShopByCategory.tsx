@@ -33,14 +33,14 @@ const categories = [
 export default function ShopByCategory() {
   return (
     <section className="py-24 bg-white">
-      <div className="mx-auto max-w-7xl px-8">
-        <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl text-gray-900 mb-4 italic">Shop by Category</h2>
-          <p className="text-gray-500 text-sm tracking-widest uppercase">Explore our curated collections by jewelry type</p>
+      <div className="mx-auto max-w-7xl px-4 sm:px-8">
+        <div className="text-center mb-10 md:mb-16">
+          <h2 className="font-serif text-3xl md:text-4xl text-gray-900 mb-4 italic">Shop by Category</h2>
+          <p className="text-gray-500 text-[10px] md:text-sm tracking-widest uppercase px-4">Explore our curated collections by jewelry type</p>
           <div className="mt-6 h-1 w-20 bg-brilliant-green/20 mx-auto rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {categories.map((category, index) => (
             <motion.div
               key={category.name}
@@ -50,7 +50,7 @@ export default function ShopByCategory() {
               transition={{ delay: index * 0.1 }}
             >
               <Link href={category.href} className="group block">
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
+                <div className="relative aspect-[4/5] rounded-xl md:rounded-2xl overflow-hidden mb-4 md:mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
                   <Image
                     src={category.image}
                     alt={category.name}
@@ -58,13 +58,13 @@ export default function ShopByCategory() {
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                  <div className="absolute bottom-6 left-6 text-white">
-                    <p className="text-[10px] uppercase tracking-[0.2em] mb-1 opacity-80">{category.count}</p>
-                    <h3 className="font-serif text-2xl tracking-wide">{category.name}</h3>
+                  <div className="absolute bottom-3 left-3 md:bottom-6 md:left-6 text-white">
+                    <p className="text-[8px] md:text-[10px] uppercase tracking-[0.2em] mb-0.5 md:mb-1 opacity-80">{category.count}</p>
+                    <h3 className="font-serif text-lg md:text-2xl tracking-wide">{category.name}</h3>
                   </div>
                 </div>
                 <div className="flex items-center justify-center">
-                  <span className="px-6 py-2.5 rounded-full border border-gray-100 text-[11px] font-bold uppercase tracking-widest text-gray-500 group-hover:bg-[#5d735d] group-hover:text-white group-hover:border-[#5d735d] transition-all duration-500 shadow-sm group-hover:shadow-md group-hover:-translate-y-0.5">
+                  <span className="px-4 py-2 md:px-6 md:py-2.5 rounded-full border border-gray-100 text-[9px] md:text-[11px] font-bold uppercase tracking-widest text-gray-500 group-hover:bg-[#5d735d] group-hover:text-white group-hover:border-[#5d735d] transition-all duration-500 shadow-sm group-hover:shadow-md group-hover:-translate-y-0.5">
                     Explore Now
                   </span>
                 </div>
