@@ -3,6 +3,7 @@ import { useState } from "react";
 import { products } from "../data/products";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function NewArrivals() {
   const [activeTab, setActiveTab] = useState("new");

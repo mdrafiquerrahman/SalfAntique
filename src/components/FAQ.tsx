@@ -46,11 +46,11 @@ export default function FAQ() {
             >
               <button
                 onClick={() => setActiveIndex(activeIndex === index ? null : index)}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-muted-gold/[0.04] transition-colors"
+                className="w-full flex items-center justify-between p-6 text-left hover:bg-[#5d735d]/5 transition-all duration-300 group"
               >
-                <span className="font-serif text-lg text-parchment italic">{faq.question}</span>
+                <span className="font-serif text-lg text-parchment italic group-hover:text-white transition-colors">{faq.question}</span>
                 <ChevronDown 
-                  className={`w-5 h-5 text-muted-gold transition-transform duration-300 ${
+                  className={`w-5 h-5 text-muted-gold group-hover:text-[#5d735d] transition-all duration-300 ${
                     activeIndex === index ? "rotate-180" : ""
                   }`} 
                 />

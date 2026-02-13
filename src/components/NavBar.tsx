@@ -81,9 +81,13 @@ export default function NavBar() {
             </div>
 
             <div className="hidden lg:flex items-center gap-6">
-              <Link href="/help" prefetch={false} className="hover:text-brilliant-green transition-colors">Help</Link>
-              <Link href="/stores" prefetch={false} className="hover:text-brilliant-green transition-colors">Stores</Link>
-              <Link href="/appointment" prefetch={false} className="flex items-center gap-1.5 hover:text-brilliant-green transition-colors">
+              <Link href="/help" prefetch={false} className="hover:text-[#5d735d] transition-colors">Help</Link>
+              <Link href="/stores" prefetch={false} className="hover:text-[#5d735d] transition-colors">Stores</Link>
+              <Link 
+                href="/appointment" 
+                prefetch={false} 
+                className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-50 border border-gray-100 hover:bg-[#5d735d] hover:text-white transition-all duration-300"
+              >
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>

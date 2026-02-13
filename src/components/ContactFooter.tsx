@@ -82,14 +82,14 @@ export default function ContactFooter() {
                   <button 
                     type="submit"
                     disabled={status === "loading"}
-                    className="bg-muted-gold/90 px-8 py-4 font-serif text-offblack text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-parchment transition-all shadow-lg whitespace-nowrap disabled:opacity-50 flex items-center justify-center min-w-[140px]"
+                    className="bg-[#5d735d] px-10 py-4 text-white text-[12px] font-bold tracking-[0.2em] rounded-full hover:bg-[#4a5c4a] transition-all duration-300 shadow-lg hover:shadow-[#5d735d]/20 whitespace-nowrap disabled:opacity-50 flex items-center justify-center min-w-[160px]"
                   >
                     {status === "loading" ? (
-                      <svg className="animate-spin h-4 w-4 text-offblack" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                    ) : "Subscribe"}
+                    ) : "SUBSCRIBE"}
                   </button>
                 </motion.form>
               )}

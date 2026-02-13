@@ -207,14 +207,14 @@ export default function AppointmentBot() {
             whileTap={{ scale: 0.95 }}
             exit={{ scale: 0, opacity: 0 }}
             onClick={() => setIsOpen(true)}
-            className="group relative flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-muted-gold/30"
+            className="group relative flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-[#5d735d] shadow-[0_8px_30px_rgba(93,115,93,0.3)] border border-[#5d735d]/20 transition-all duration-300"
           >
-            <div className="absolute inset-0 rounded-full bg-muted-gold/5 animate-ping group-hover:hidden" />
+            <div className="absolute inset-0 rounded-full bg-[#5d735d]/20 animate-ping group-hover:hidden" />
             <div className="relative flex flex-col items-center">
-              <svg className="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+              <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
               </svg>
-              <span className="text-[7px] font-bold tracking-[0.2em] text-muted-gold uppercase mt-0.5">Chat</span>
+              <span className="text-[7px] font-bold tracking-[0.2em] text-white/80 uppercase mt-0.5">Chat</span>
             </div>
           </motion.button>
         )}
@@ -285,7 +285,7 @@ export default function AppointmentBot() {
                           <button
                             key={option}
                             onClick={() => handleOptionClick(option)}
-                            className="rounded-full border border-muted-gold/30 bg-white px-4 py-2 text-[11px] font-medium text-gray-700 transition-all hover:border-muted-gold hover:bg-muted-gold/5 active:scale-95"
+                            className="rounded-full border border-[#5d735d]/30 bg-white px-4 py-2 text-[11px] font-medium text-gray-700 transition-all hover:border-[#5d735d] hover:bg-[#5d735d]/5 active:scale-95"
                           >
                             {option}
                           </button>

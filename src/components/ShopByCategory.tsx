@@ -63,11 +63,10 @@ export default function ShopByCategory() {
                     <h3 className="font-serif text-2xl tracking-wide">{category.name}</h3>
                   </div>
                 </div>
-                <div className="flex items-center justify-between px-2">
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-gray-400 group-hover:text-brilliant-green transition-colors">
+                <div className="flex items-center justify-center">
+                  <span className="px-6 py-2.5 rounded-full border border-gray-100 text-[11px] font-bold uppercase tracking-widest text-gray-500 group-hover:bg-[#5d735d] group-hover:text-white group-hover:border-[#5d735d] transition-all duration-500 shadow-sm group-hover:shadow-md group-hover:-translate-y-0.5">
                     Explore Now
                   </span>
-                  <div className="w-8 h-px bg-gray-200 group-hover:w-12 group-hover:bg-brilliant-green transition-all" />
                 </div>
               </Link>
             </motion.div>

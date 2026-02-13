@@ -35,9 +35,12 @@ export default function MuseumHero() {
               <Link
                 href="/collections"
                 prefetch={false}
-                className="bg-transparent px-6 py-3 text-[10px] lg:text-[12px] font-bold tracking-widest text-parchment uppercase hover:bg-brilliant-green transition-all text-center border border-parchment/40 rounded-full"
+                className="group relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 px-8 py-4 rounded-full transition-all duration-500 hover:bg-white hover:border-white"
               >
-                Shop Our Collections
+                <span className="relative z-10 text-[11px] lg:text-[13px] font-bold tracking-[0.2em] text-white uppercase group-hover:text-[#5d735d] transition-colors duration-500">
+                  SHOP OUR COLLECTIONS
+                </span>
+                <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
               </Link>
             </div>
           </motion.div>
