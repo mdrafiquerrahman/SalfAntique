@@ -51,8 +51,35 @@ export default function ProductCard({ product }: { product: Product }) {
           )}
         </Link>
 
-        {/* Action Icons */}
-        <div className="absolute right-3 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-10">
+        {/* Desktop Quick Actions */}
+        <div className="absolute inset-0 z-10 hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+          {/* Top Right Search */}
+          <button 
+            className="absolute top-3 right-3 p-2 rounded-full bg-white shadow-sm pointer-events-auto hover:bg-gray-50 transition-colors"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              router.push(`/products/${product.slug}`);
+            }}
+          >
+            <Search className="w-4 h-4 text-gray-700" />
+          </button>
+          
+          {/* Bottom Full-width Add to cart */}
+          <button 
+            className="absolute bottom-0 left-0 right-0 py-3 bg-gray-100/90 backdrop-blur-sm text-gray-900 text-xs font-semibold pointer-events-auto hover:bg-gray-200 transition-colors"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              addToCart(product);
+            }}
+          >
+            Add to cart
+          </button>
+        </div>
+
+        {/* Mobile Action Icons */}
+        <div className="absolute right-3 top-1/2 -translate-y-1/2 flex md:hidden flex-col gap-2 z-10">
           <button 
             className="p-2 rounded-full bg-gray-200/50 hover:bg-white transition-all shadow-sm"
             onClick={(e) => {
