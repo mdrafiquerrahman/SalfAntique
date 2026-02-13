@@ -24,12 +24,13 @@ export async function POST(request: Request) {
     const isAuthentic = expectedSignature === razorpay_signature;
 
     if (isAuthentic) {
-      // Send confirmation email
-      if (process.env.RESEND_API_KEY && process.env.RESEND_API_KEY !== "re_your_api_key_here") {
-        try {
-          console.log("Attempting to send confirmation email to customer:", customerDetails.email);
-          
-          const { data, error } = await resend.emails.send({
+    // Send confirmation email
+    const apiKey = process.env.RESEND_API_KEY;
+    if (apiKey) {
+      try {
+        console.log("Attempting to send confirmation email to customer:", customerDetails.email);
+        
+        const { data, error } = await resend.emails.send({
             from: "SALF Antqe <onboarding@resend.dev>",
             to: "rafiquerrahman66@gmail.com", // Reverting to verified email to avoid 403 Sandbox error
             replyTo: customerDetails.email, // Customer's email for your reference

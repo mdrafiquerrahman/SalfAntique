@@ -3,9 +3,20 @@ import Razorpay from "razorpay";
 
 export async function POST(request: Request) {
   try {
+    const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
+    const keySecret = process.env.RAZORPAY_KEY_SECRET;
+
+    if (!keyId || !keySecret) {
+      console.error("Razorpay credentials missing in environment variables");
+      return NextResponse.json(
+        { error: "Payment gateway not configured. Please add Razorpay keys to your Vercel Environment Variables." },
+        { status: 500 }
+      );
+    }
+
     const razorpay = new Razorpay({
-      key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
-      key_secret: process.env.RAZORPAY_KEY_SECRET!,
+      key_id: keyId,
+      key_secret: keySecret,
     });
 
     const { amount, currency = "INR" } = await request.json();
