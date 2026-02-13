@@ -52,29 +52,29 @@ export default function ProductCard({ product }: { product: Product }) {
         </Link>
 
         {/* Desktop Quick Actions */}
-        <div className="absolute inset-0 z-10 hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+        <div className="absolute inset-0 z-10 hidden md:block opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
           {/* Top Right Search */}
           <button 
-            className="absolute top-3 right-3 p-2 rounded-full bg-white shadow-sm pointer-events-auto hover:bg-gray-50 transition-colors"
+            className="absolute top-4 right-4 p-2.5 rounded-full bg-white/90 backdrop-blur-sm shadow-sm pointer-events-auto hover:bg-white hover:scale-110 transition-all duration-300 group/search"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               router.push(`/products/${product.slug}`);
             }}
           >
-            <Search className="w-4 h-4 text-gray-700" />
+            <Search className="w-4 h-4 text-gray-700 group-hover/search:text-gray-900" />
           </button>
           
-          {/* Bottom Full-width Add to cart */}
+          {/* Bottom Full-width Add to cart - Slides up */}
           <button 
-            className="absolute bottom-0 left-0 right-0 py-3 bg-gray-100/90 backdrop-blur-sm text-gray-900 text-xs font-semibold pointer-events-auto hover:bg-gray-200 transition-colors"
+            className="absolute bottom-0 left-0 right-0 py-3.5 bg-white/95 backdrop-blur-md text-gray-900 text-[13px] font-bold tracking-wide pointer-events-auto hover:bg-[#5d735d] hover:text-white transition-all duration-500 translate-y-full group-hover:translate-y-0"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               addToCart(product);
             }}
           >
-            Add to cart
+            ADD TO CART
           </button>
         </div>
 

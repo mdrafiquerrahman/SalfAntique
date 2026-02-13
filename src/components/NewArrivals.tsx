@@ -17,23 +17,23 @@ export default function NewArrivals() {
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         {/* Centered Tab/Filter Bar */}
         <div className="flex justify-center items-center mb-16">
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4 md:gap-8 bg-gray-50/50 p-1.5 rounded-2xl border border-gray-100">
             <button 
               onClick={() => setActiveTab("new")}
-              className={`px-6 py-2.5 rounded-xl text-[15px] font-semibold transition-all duration-300 ${
+              className={`px-8 py-2.5 rounded-xl text-[14px] font-bold tracking-tight transition-all duration-500 ${
                 activeTab === "new" 
-                  ? "bg-[#e5e7eb] text-gray-900 shadow-sm" 
-                  : "text-gray-500 hover:text-gray-900"
+                  ? "bg-white text-gray-900 shadow-md scale-[1.02]" 
+                  : "text-gray-400 hover:text-gray-600 hover:bg-white/50"
               }`}
             >
               New Arrivals
             </button>
             <button 
               onClick={() => setActiveTab("ready")}
-              className={`px-6 py-2.5 rounded-xl text-[15px] font-semibold transition-all duration-300 ${
+              className={`px-8 py-2.5 rounded-xl text-[14px] font-bold tracking-tight transition-all duration-500 ${
                 activeTab === "ready" 
-                  ? "bg-[#e5e7eb] text-gray-900 shadow-sm" 
-                  : "text-gray-500 hover:text-gray-900"
+                  ? "bg-white text-gray-900 shadow-md scale-[1.02]" 
+                  : "text-gray-400 hover:text-gray-600 hover:bg-white/50"
               }`}
             >
               Ready To Ship
@@ -47,12 +47,18 @@ export default function NewArrivals() {
           ))}
         </div>
 
-        <div className="mt-16 flex justify-center">
+        <div className="mt-20 flex justify-center">
           <Link 
             href="/collections"
-            className="text-[#5d735d] text-[13px] font-medium border-b border-[#5d735d]/30 hover:border-[#5d735d] transition-all pb-0.5"
+            className="group flex items-center gap-3 px-10 py-4 bg-[#5d735d] text-white text-[13px] font-bold tracking-[0.1em] rounded-full hover:bg-[#4a5c4a] transition-all duration-300 shadow-lg hover:shadow-[#5d735d]/20 hover:-translate-y-1"
           >
-            View all products
+            VIEW ALL PRODUCTS
+            <motion.span
+              animate={{ x: [0, 5, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5 }}
+            >
+              →
+            </motion.span>
           </Link>
         </div>
       </div>
