@@ -1,7 +1,6 @@
 import MuseumHero from "../components/MuseumHero";
 import FeaturedEras from "../components/FeaturedEras";
 import NewArrivals from "../components/NewArrivals";
-import TrendingNow from "../components/TrendingNow";
 import Assurance from "../components/Assurance";
 import ShopByCategory from "../components/ShopByCategory";
 import FAQ from "../components/FAQ";
@@ -11,9 +10,6 @@ export default function Home() {
     <div className="min-h-screen bg-neutral-bg">
       <MuseumHero />
       <ShopByCategory />
-      <div className="py-12 md:py-20">
-        <TrendingNow />
-      </div>
       <NewArrivals />
       <FAQ />
       <Assurance />
