@@ -7,10 +7,10 @@ export async function POST(request: Request) {
     
     const apiKey = process.env.RESEND_API_KEY;
     
-    if (!apiKey || apiKey === 're_your_api_key_here' || !apiKey) {
-      console.error("Newsletter: Missing or invalid RESEND_API_KEY");
+    if (!apiKey) {
+      console.error("Newsletter: RESEND_API_KEY is not defined in environment variables");
       return NextResponse.json(
-        { error: "Email service not configured. Please add a valid RESEND_API_KEY to your .env.local file." }, 
+        { error: "Email service not configured. Please add RESEND_API_KEY to your Vercel Environment Variables." }, 
         { status: 500 }
       );
     }
