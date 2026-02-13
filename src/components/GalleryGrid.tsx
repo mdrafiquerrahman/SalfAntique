@@ -68,13 +68,13 @@ export default function GalleryGrid({ era, category, sort }: GalleryGridProps) {
 
   return (
     <motion.div
-      className="columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-8"
+      className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12"
       variants={container}
       initial="hidden"
       animate="visible"
     >
       {filteredProducts.map((product) => (
-        <motion.div key={product.slug} variants={item} className="break-inside-avoid">
+        <motion.div key={product.slug} variants={item}>
           <ProductCard product={product} />
         </motion.div>
       ))}
