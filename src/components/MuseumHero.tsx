@@ -38,69 +38,32 @@ export default function MuseumHero() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-4 lg:px-20">
-        <div className="max-w-2xl text-left overflow-hidden">
-          <AnimatePresence initial={false} mode="popLayout">
-            <motion.div
-              key={currentIndex}
-              initial={{ x: 50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -50, opacity: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="space-y-6"
-            >
-              <div className="space-y-2">
-                <span className="text-muted-gold/60 text-[10px] uppercase tracking-[0.5em] font-sans block mb-2">
-                  Our Signature Collections
+      <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center justify-center lg:justify-end px-4 lg:px-8">
+        <div className="max-w-md text-center lg:text-left lg:ml-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <h2 className="font-serif text-3xl lg:text-5xl text-parchment leading-tight">
+              Our Signature Collections
+            </h2>
+            <p className="mt-4 text-xs lg:text-base text-parchment/90 tracking-wide">
+              The beauty of nature meets the brilliance of design.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Link
+                href="/collections"
+                prefetch={false}
+                className="group relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 px-8 py-4 rounded-full transition-all duration-500 hover:bg-white hover:border-white"
+              >
+                <span className="relative z-10 text-[11px] lg:text-[13px] font-bold tracking-[0.2em] text-white uppercase group-hover:text-[#5d735d] transition-colors duration-500">
+                  SHOP OUR COLLECTIONS
                 </span>
-                <h2 className="font-serif text-5xl lg:text-7xl text-parchment leading-[0.9] tracking-tighter">
-                  {displayProducts[currentIndex].name}
-                </h2>
-              </div>
-              
-              <p className="text-parchment/60 font-sans text-lg lg:text-xl max-w-xl italic leading-relaxed line-clamp-2">
-                "{displayProducts[currentIndex].story}"
-              </p>
-
-              <div className="pt-8 flex flex-col sm:flex-row gap-6">
-                <Link
-                  href={`/products/${displayProducts[currentIndex].slug}`}
-                  prefetch={false}
-                  className="group relative overflow-hidden bg-muted-gold/10 backdrop-blur-md border border-muted-gold/20 px-10 py-4 rounded-full transition-all duration-500 hover:bg-muted-gold hover:border-muted-gold"
-                >
-                  <span className="relative z-10 text-[11px] lg:text-[13px] font-bold tracking-[0.2em] text-muted-gold group-hover:text-offblack transition-colors duration-500 uppercase">
-                    View Masterpiece
-                  </span>
-                </Link>
-                
-                <Link
-                  href="/collections"
-                  prefetch={false}
-                  className="group flex items-center gap-4 px-6 py-4 text-parchment/40 hover:text-parchment transition-colors duration-300"
-                >
-                  <span className="text-[11px] lg:text-[13px] font-bold tracking-[0.2em] uppercase">
-                    Explore Archive
-                  </span>
-                  <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Slider Indicators */}
-          <div className="absolute bottom-12 left-4 lg:left-20 flex gap-3">
-            {displayProducts.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentIndex(idx)}
-                className={`h-1 transition-all duration-500 rounded-full ${
-                  currentIndex === idx ? "w-12 bg-muted-gold" : "w-6 bg-white/10 hover:bg-white/30"
-                }`}
-              />
-            ))}
-          </div>
+                <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
