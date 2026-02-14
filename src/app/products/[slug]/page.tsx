@@ -61,8 +61,8 @@ export default function ProductPage({
 
   return (
     <div className="min-h-screen bg-offblack selection:bg-muted-gold/30">
-      {/* Decorative Background Element */}
-      <div className="fixed inset-0 pointer-events-none opacity-[0.02] bg-[url('/grain.png')] z-50" />
+      {/* Decorative background grain */}
+      <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E')] z-50" />
       
       <div className="mx-auto max-w-[1440px] px-8 lg:px-20 py-16 lg:py-32">
         <div className="flex flex-col lg:flex-row gap-24 lg:gap-40">
@@ -134,54 +134,54 @@ export default function ProductPage({
           </div>
 
           {/* Right: Scrollable Information Panel */}
-          <div className="lg:w-[55%] space-y-32 py-8">
+          <div className="lg:w-[55%] space-y-24 py-8">
             {/* Header & Price */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="space-y-12"
+              className="space-y-10"
             >
-              <div className="space-y-6">
-                <div className="flex items-center gap-6 text-muted-gold/40 font-sans text-[9px] uppercase tracking-[0.5em]">
-                  <span className="text-muted-gold/60">{product.era} Period</span>
-                  <span className="h-[1px] w-8 bg-muted-gold/20" />
+              <div className="space-y-4">
+                <div className="flex items-center gap-6 text-muted-gold/80 font-sans text-[10px] uppercase tracking-[0.5em]">
+                  <span className="text-muted-gold/90">{product.era} Period</span>
+                  <span className="h-[1px] w-8 bg-muted-gold/60" />
                   <span>Inv. No. {slug.slice(0, 4).toUpperCase()}</span>
                 </div>
-                <h1 className="font-serif text-5xl md:text-7xl lg:text-9xl text-parchment leading-[0.95] md:leading-[0.85] tracking-tighter">
+                <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-parchment leading-tight tracking-tight">
                   {product.name}
                 </h1>
-                <div className="flex items-baseline gap-4 pt-4">
-                  <span className="font-serif text-3xl md:text-4xl lg:text-5xl text-muted-gold/90">
+                <div className="flex items-baseline gap-4 pt-2">
+                  <span className="font-serif text-3xl md:text-4xl lg:text-5xl text-muted-gold">
                     {new Intl.NumberFormat('en-IN', {
                       style: 'currency',
                       currency: 'INR',
                       maximumFractionDigits: 0
                     }).format(product.price)}
                   </span>
-                  <span className="text-muted-gold/40 text-[10px] uppercase tracking-[0.2em] font-sans">Inc. Private Acquisition Fees</span>
+                  <span className="text-muted-gold/80 text-[10px] uppercase tracking-[0.2em] font-sans">Inc. Private Acquisition Fees</span>
                 </div>
               </div>
               
-              <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-6">
                 <div className="h-[1px] w-24 bg-muted-gold/20" />
                 
                 {/* Cart Actions */}
-                <div className="space-y-6">
-                  <div className="flex items-center gap-6">
-                    <div className="flex items-center border border-muted-gold/20 rounded-sm bg-muted-gold/[0.02]">
+                <div className="space-y-4">
+                  <div className="flex flex-col sm:flex-row items-stretch gap-4">
+                    <div className="flex items-center justify-between border border-muted-gold/40 rounded-xl bg-muted-gold/[0.02] px-2">
                       <button 
                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                        className="p-3 text-muted-gold hover:bg-muted-gold/10 transition-colors"
+                        className="p-3 text-muted-gold hover:text-parchment transition-colors"
                       >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M20 12H4" /></svg>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M20 12H4" /></svg>
                       </button>
-                      <span className="w-12 text-center text-parchment font-serif text-lg">{quantity}</span>
+                      <span className="w-12 text-center text-parchment font-serif text-xl">{quantity}</span>
                       <button 
                         onClick={() => setQuantity(quantity + 1)}
-                        className="p-3 text-muted-gold hover:bg-muted-gold/10 transition-colors"
+                        className="p-3 text-muted-gold hover:text-parchment transition-colors"
                       >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 4v16m8-8H4" /></svg>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M12 4v16m8-8H4" /></svg>
                       </button>
                     </div>
                     <button 
@@ -189,9 +189,10 @@ export default function ProductPage({
                         addToCart(product, quantity);
                         setIsCartOpen(true);
                       }}
-                      className="flex-1 py-4 px-8 border border-muted-gold text-muted-gold text-[11px] uppercase tracking-[0.3em] font-bold hover:bg-muted-gold hover:text-offblack transition-all duration-500"
+                      className="flex-1 py-5 px-8 border border-muted-gold/60 text-parchment text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-muted-gold hover:text-offblack transition-all duration-700 relative group overflow-hidden rounded-xl"
                     >
-                      Add to Archive
+                      <span className="relative z-10">Add to Cart</span>
+                      <div className="absolute inset-0 bg-muted-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                     </button>
                   </div>
                   
@@ -200,27 +201,27 @@ export default function ProductPage({
                       addToCart(product, quantity);
                       router.push('/checkout');
                     }}
-                    className="w-full py-5 bg-brilliant-green text-parchment text-[11px] uppercase tracking-[0.3em] font-bold hover:bg-emerald-900 transition-all duration-500 shadow-xl shadow-black/40 flex items-center justify-center gap-3"
+                    className="w-full py-6 bg-[#0a2e1f] text-parchment border border-brilliant-green/50 text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-brilliant-green transition-all duration-700 shadow-2xl flex items-center justify-center gap-4 group rounded-xl"
                   >
                     Buy It Now
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                    <svg className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                   </button>
                 </div>
 
-                <p className="text-muted-gold/40 text-[10px] italic font-serif tracking-wide">Secure global shipping and private consultation included.</p>
+                <p className="text-muted-gold/60 text-[10px] italic font-serif tracking-wide">Secure global shipping and private consultation included.</p>
               </div>
             </motion.div>
 
             {/* The Story & Curator's Note */}
-            <section className="space-y-16">
+            <section className="space-y-12">
               <div className="space-y-8">
-                <h2 className="font-serif text-[10px] uppercase tracking-[0.4em] text-muted-gold/30">Narrative & Provenance</h2>
-                <div className="relative group">
-                  <div className="absolute -inset-4 bg-muted-gold/[0.03] rounded-2xl border border-muted-gold/10 transition-all duration-700 group-hover:bg-muted-gold/[0.05] group-hover:border-muted-gold/20" />
-                  <p className="relative font-sans text-parchment/80 leading-[1.6] text-xl md:text-2xl lg:text-3xl font-light italic max-w-2xl">
-                    "{product.story}"
-                  </p>
+                <div className="flex items-center gap-4">
+                  <div className="h-[1px] w-12 bg-muted-gold/40" />
+                  <span className="text-muted-gold font-serif italic text-lg">The Narrative</span>
                 </div>
+                <p className="font-serif text-xl lg:text-2xl text-parchment/90 leading-relaxed italic max-w-2xl">
+                  {product.story}
+                </p>
               </div>
               
               {product.curatorNote && (
@@ -228,10 +229,10 @@ export default function ProductPage({
                   initial={{ opacity: 0, x: 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  className="bg-muted-gold/[0.02] border-l-[1px] border-muted-gold/20 p-12 space-y-4 max-w-xl"
+                  className="bg-muted-gold/[0.04] border-l-[1px] border-muted-gold/40 p-10 space-y-4 max-w-xl"
                 >
-                  <span className="block font-serif text-muted-gold/60 text-xs italic tracking-wider">Curator's Insight</span>
-                  <p className="font-sans text-parchment/50 text-sm leading-relaxed italic">
+                  <span className="block font-serif text-muted-gold/80 text-xs italic tracking-wider">Curator's Insight</span>
+                  <p className="font-sans text-parchment/80 text-sm leading-relaxed italic">
                     {product.curatorNote}
                   </p>
                 </motion.div>
@@ -239,90 +240,93 @@ export default function ProductPage({
             </section>
 
             {/* Provenance & Heritage Timeline */}
-            <section className="space-y-16">
-              <div className="flex items-center gap-8">
-                <h2 className="font-serif text-xs uppercase tracking-[0.4em] text-muted-gold/30">Historical Timeline</h2>
-                <div className="h-[1px] w-full bg-gradient-to-r from-muted-gold/20 to-transparent" />
-              </div>
-              <div className="relative pl-12 space-y-16 before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[1px] before:bg-gradient-to-b before:from-muted-gold/30 before:via-muted-gold/5 before:to-transparent">
-                {product.timeline.map((item, i) => (
-                  <motion.div 
-                    key={i} 
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.15 }}
-                    className="relative"
-                  >
-                    <div className="absolute -left-[51.5px] top-2 h-[6px] w-[6px] rounded-full bg-muted-gold/40 ring-4 ring-offblack shadow-[0_0_15px_rgba(196,164,132,0.2)]" />
-                    <div className="space-y-3">
-                      <span className="font-serif text-muted-gold text-2xl leading-none opacity-80">{item.year}</span>
+            {product.timeline && product.timeline.length > 0 && (
+              <section className="space-y-12">
+                <div className="flex items-center gap-8">
+                  <h2 className="font-serif text-xs uppercase tracking-[0.4em] text-muted-gold/80">Historical Timeline</h2>
+                  <div className="h-[1px] w-full bg-gradient-to-r from-muted-gold/60 to-transparent" />
+                </div>
+                <div className="relative pl-12 space-y-12 before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[1px] before:bg-gradient-to-b before:from-muted-gold/40 before:via-muted-gold/10 before:to-transparent">
+                  {product.timeline.map((item, i) => (
+                    <motion.div 
+                      key={i} 
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.15 }}
+                      className="relative"
+                    >
+                      <div className="absolute -left-[51.5px] top-2 h-[6px] w-[6px] rounded-full bg-muted-gold/40 ring-4 ring-offblack shadow-[0_0_15px_rgba(196,164,132,0.2)]" />
                       <div className="space-y-2">
-                        <h4 className="font-serif text-parchment text-xl tracking-tight">{item.event}</h4>
-                        {item.description && (
-                          <p className="font-sans text-parchment/40 text-sm leading-relaxed max-w-lg">
-                            {item.description}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </section>
-
-            {/* Gemstones with Detail Zoom */}
-            <section className="space-y-16">
-              <div className="flex items-center justify-between">
-                <h2 className="font-serif text-xs uppercase tracking-[0.4em] text-muted-gold/30">Gemstone Analysis</h2>
-                <span className="text-muted-gold/20 text-[9px] uppercase tracking-widest italic">Macro Inspection</span>
-              </div>
-              <div className="grid gap-12">
-                {product.gemstones.map((g, i) => (
-                  <motion.div 
-                    key={i} 
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="group"
-                  >
-                    <div className="rounded-sm border border-muted-gold/5 bg-offblack/30 p-12 transition-all duration-700 hover:border-muted-gold/20">
-                      <div className="flex flex-col md:flex-row gap-12">
-                        {g.detailImage && (
-                          <div className="w-full md:w-40">
-                            <MacroZoom image={g.detailImage} title={`${g.name} Detail`} />
-                          </div>
-                        )}
-                        <div className="flex-1 space-y-6">
-                          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 md:gap-0">
-                            <div className="space-y-2">
-                              <h4 className="font-serif text-parchment text-3xl group-hover:text-muted-gold transition-colors duration-500">{g.name}</h4>
-                              <p className="font-sans text-muted-gold/50 text-[10px] uppercase tracking-[0.3em]">
-                                {g.carat ? `${g.carat} Carats • ` : ""}{g.cut ? `${g.cut} Cut • ` : ""}{g.color}
-                              </p>
-                            </div>
-                            {g.provenance && (
-                              <span className="w-fit font-serif text-muted-gold/30 text-[10px] uppercase tracking-widest bg-muted-gold/[0.03] px-4 py-2 rounded-full border border-muted-gold/5">{g.provenance}</span>
-                            )}
-                          </div>
-                          <div className="h-[1px] w-full bg-muted-gold/5" />
-                          {g.cut && (
-                            <p className="text-parchment/30 text-sm leading-relaxed italic max-w-xl">
-                              The {g.cut.toLowerCase()} cut of this {g.name.toLowerCase()} is a testament to the artisan's skill in the {product.era} era.
+                        <span className="font-serif text-muted-gold text-2xl leading-none opacity-80">{item.year}</span>
+                        <div className="space-y-1">
+                          <h4 className="font-serif text-parchment text-xl tracking-tight">{item.event}</h4>
+                          {item.description && (
+                            <p className="font-sans text-parchment/60 text-sm leading-relaxed max-w-lg">
+                              {item.description}
                             </p>
                           )}
                         </div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </section>
+                    </motion.div>
+                  ))}
+                </div>
+              </section>
+            )}
 
-            {/* Customer Reviews Section */}
-            <section className="space-y-16">
+            {/* Gemstones with Detail Zoom */}
+            {product.gemstones && product.gemstones.length > 0 && (
+              <section className="space-y-12">
+                <div className="flex items-center justify-between">
+                  <h2 className="font-serif text-xs uppercase tracking-[0.4em] text-muted-gold/60">Gemstone Analysis</h2>
+                </div>
+                <div className="grid gap-10">
+                  {product.gemstones.map((g, i) => (
+                    <motion.div 
+                      key={i} 
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      className="group"
+                    >
+                      <div className="rounded-sm border border-muted-gold/5 bg-offblack/30 p-10 transition-all duration-700 hover:border-muted-gold/20">
+                        <div className="flex flex-col md:flex-row gap-10">
+                          {g.detailImage && (
+                            <div className="w-full md:w-40">
+                              <MacroZoom image={g.detailImage} title={`${g.name} Detail`} />
+                            </div>
+                          )}
+                          <div className="flex-1 space-y-4">
+                            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 md:gap-0">
+                              <div className="space-y-1">
+                                <h4 className="font-serif text-parchment text-3xl group-hover:text-muted-gold transition-colors duration-500">{g.name}</h4>
+                                <p className="font-sans text-muted-gold/70 text-[10px] uppercase tracking-[0.3em]">
+                                  {g.carat ? `${g.carat} Carats • ` : ""}{g.cut ? `${g.cut} Cut • ` : ""}{g.color}
+                                </p>
+                              </div>
+                              {g.provenance && (
+                                <span className="w-fit font-serif text-muted-gold/60 text-[10px] uppercase tracking-widest bg-muted-gold/[0.05] px-4 py-2 rounded-xl border border-muted-gold/20">{g.provenance}</span>
+                              )}
+                            </div>
+                            <div className="h-[1px] w-full bg-muted-gold/5" />
+                            {g.cut && (
+                              <p className="text-parchment/60 text-sm leading-relaxed italic max-w-xl">
+                                The {g.cut.toLowerCase()} cut of this {g.name.toLowerCase()} is a testament to the artisan's skill in the {product.era} era.
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Client Testimonials Section */}
+            <section className="space-y-12">
               <div className="flex items-center justify-between">
-                <h2 className="font-serif text-xs uppercase tracking-[0.4em] text-muted-gold/30">Client Testimonials</h2>
+                <h2 className="font-serif text-xs uppercase tracking-[0.4em] text-muted-gold/80">Client Testimonials</h2>
                 <div className="flex items-center gap-2">
                   <div className="flex text-muted-gold">
                     {[1, 2, 3, 4, 5].map((s) => (
@@ -331,21 +335,21 @@ export default function ProductPage({
                       </svg>
                     ))}
                   </div>
-                  <span className="text-muted-gold/60 text-[10px] uppercase tracking-widest">4.9/5 Rating</span>
+                  <span className="text-muted-gold text-[10px] uppercase tracking-widest font-bold">4.9/5 Rating</span>
                 </div>
               </div>
               
-              <div className="space-y-12">
+              <div className="space-y-10">
                 {[
                   { name: "Eleanor V.", date: "Dec 2025", review: "The craftsmanship is even more breathtaking in person. A true heirloom piece that feels like it carries centuries of history." },
                   { name: "James L.", date: "Nov 2025", review: "Acquisition process was seamless and professional. The provenance documentation provided is exceptionally detailed." }
                 ].map((rev, i) => (
-                  <div key={i} className="border-b border-muted-gold/10 pb-12 last:border-0">
+                  <div key={i} className="border-b border-muted-gold/20 pb-10 last:border-0">
                     <div className="flex justify-between items-start mb-4">
                       <span className="font-serif text-parchment text-lg">{rev.name}</span>
-                      <span className="text-muted-gold/30 text-[10px] uppercase tracking-widest">{rev.date}</span>
+                      <span className="text-muted-gold/50 text-[10px] uppercase tracking-widest">{rev.date}</span>
                     </div>
-                    <p className="font-sans text-parchment/50 text-sm leading-relaxed italic">"{rev.review}"</p>
+                    <p className="font-sans text-parchment/80 text-sm leading-relaxed italic">"{rev.review}"</p>
                   </div>
                 ))}
               </div>
@@ -353,27 +357,30 @@ export default function ProductPage({
 
             {/* Technical Specifications */}
             <section className="space-y-16">
-              <h2 className="font-serif text-xs uppercase tracking-[0.4em] text-muted-gold/30">Technical Specifications</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-12 border-t border-muted-gold/5 pt-16">
+              <div className="flex items-center gap-8">
+                <h2 className="font-serif text-xs uppercase tracking-[0.4em] text-muted-gold/80">Technical Specifications</h2>
+                <div className="h-[1px] w-full bg-gradient-to-r from-muted-gold/60 to-transparent" />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-muted-gold/40 border border-muted-gold/40 rounded-xl overflow-hidden">
                 {[
                   { label: "Composition", value: product.specs.metal },
                   { label: "Era & Origin", value: `${product.era}, ${product.specs.origin}` },
                   { label: "Gross Weight", value: product.specs.weight },
                   { label: "Condition Report", value: product.specs.condition },
                 ].map((spec, i) => (
-                  <div key={i} className="space-y-3">
-                    <span className="block text-muted-gold/30 text-[9px] uppercase tracking-[0.4em]">{spec.label}</span>
-                    <span className="font-serif text-parchment text-2xl tracking-tight">{spec.value}</span>
+                  <div key={i} className="bg-offblack/40 p-10 space-y-4 hover:bg-muted-gold/[0.04] transition-colors">
+                    <span className="block text-muted-gold/60 text-[9px] uppercase tracking-[0.4em] font-medium">{spec.label}</span>
+                    <span className="block font-serif text-parchment text-xl tracking-tight leading-snug">{spec.value}</span>
                   </div>
                 ))}
               </div>
             </section>
 
             {/* Delivery & Pincode Checker (Zapvi style) */}
-            <section className="space-y-8 py-12 border-t border-muted-gold/5">
+            <section className="space-y-8 py-12 border-t border-muted-gold/10">
               <div className="flex items-center gap-6">
-                <h2 className="font-serif text-xs uppercase tracking-[0.4em] text-muted-gold/30 whitespace-nowrap">Check Delivery</h2>
-                <div className="h-[1px] w-full bg-muted-gold/5" />
+                <h2 className="font-serif text-[10px] font-bold uppercase tracking-[0.4em] text-muted-gold whitespace-nowrap">Check Delivery</h2>
+                <div className="h-[1px] w-full bg-muted-gold/40" />
               </div>
               
               <div className="max-w-md space-y-4">
@@ -383,12 +390,12 @@ export default function ProductPage({
                     placeholder="Enter Pincode" 
                     value={pincode}
                     onChange={(e) => setPincode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                    className="flex-1 bg-muted-gold/[0.03] border border-muted-gold/10 px-6 py-4 font-serif italic text-parchment focus:outline-none focus:border-muted-gold/40 transition-all text-sm sm:text-base"
+                    className="flex-1 bg-muted-gold/[0.08] border border-muted-gold/60 px-6 py-4 font-serif italic text-parchment focus:outline-none focus:border-muted-gold focus:ring-1 focus:ring-muted-gold/30 transition-all text-sm sm:text-base rounded-xl placeholder:text-muted-gold/20"
                   />
                   <button 
                     onClick={checkPincode}
                     disabled={pincode.length < 6 || pincodeStatus === "checking"}
-                    className="bg-muted-gold/10 px-8 py-4 font-serif text-muted-gold text-[10px] uppercase tracking-widest hover:bg-muted-gold/20 disabled:opacity-20 transition-all border border-muted-gold/20 whitespace-nowrap"
+                    className="bg-transparent px-12 py-4 font-serif text-[#d4af37] text-[11px] font-bold uppercase tracking-[0.4em] flex items-center justify-center hover:bg-muted-gold/[0.1] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-30 transition-all border border-muted-gold/80 whitespace-nowrap rounded-full z-10 shadow-[0_0_15px_rgba(212,175,55,0.1)]"
                   >
                     {pincodeStatus === "checking" ? "Checking..." : "Check"}
                   </button>
@@ -414,7 +421,7 @@ export default function ProductPage({
                       className="text-[10px] text-red-400/80 font-sans tracking-wider flex items-center gap-2"
                     >
                       <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" /></svg>
-                      Currently unavailable for direct shipping. Contact concierge.
+                      Currently unavailable for direct shipping. Contact curator.
                     </motion.p>
                   )}
                 </AnimatePresence>
@@ -426,36 +433,28 @@ export default function ProductPage({
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="pt-12 border-t border-muted-gold/5 flex flex-col md:flex-row items-center justify-between gap-12"
+              className="pt-12 border-t border-muted-gold/10 flex flex-col lg:flex-row items-center justify-between gap-8"
             >
-              <Link href="/" className="group flex items-center gap-4 text-parchment/30 hover:text-muted-gold/60 transition-all duration-500">
-                <span className="transition-transform group-hover:-translate-x-3 text-2xl">←</span>
-                <span className="font-serif italic tracking-widest text-sm">Return to Archive</span>
-              </Link>
-              <div className="flex flex-col gap-6 w-full md:w-auto px-4 md:px-0">
-                <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center md:justify-end">
-                  <button 
-                    onClick={() => {
-                      addToCart(product);
-                      router.push('/cart');
-                    }}
-                    className="w-full sm:w-auto border border-muted-gold/40 px-10 py-5 font-serif text-muted-gold hover:bg-muted-gold/10 transition-all duration-500 uppercase text-[9px] tracking-[0.3em] font-bold"
-                  >
-                    Add to Bag
-                  </button>
-                  <button 
-                    onClick={handleInquiry}
-                    className="w-full sm:w-auto border border-muted-gold/20 px-10 py-5 font-serif text-muted-gold/60 hover:bg-muted-gold/[0.02] hover:border-muted-gold/40 transition-all duration-500 uppercase text-[9px] tracking-[0.3em]"
-                  >
-                    Private Inquiry
-                  </button>
-                  <button 
-                    onClick={handleAcquire}
-                    className="w-full sm:w-auto bg-muted-gold/90 px-12 py-5 font-serif text-offblack hover:bg-parchment transition-all duration-500 uppercase text-[9px] tracking-[0.4em] font-bold shadow-xl"
-                  >
-                    Acquire Piece
-                  </button>
+              <Link href="/" className="group flex items-center gap-6 text-parchment/60 hover:text-muted-gold transition-all duration-700">
+                <div className="w-10 h-10 rounded-full border border-muted-gold/20 flex items-center justify-center group-hover:border-muted-gold/60 transition-all">
+                  <span className="transition-transform group-hover:-translate-x-1 text-xl">←</span>
                 </div>
+                <span className="font-serif italic tracking-[0.2em] text-[10px] uppercase">Return to Gallery</span>
+              </Link>
+              
+              <div className="flex flex-wrap items-center justify-center lg:justify-end gap-3 w-full lg:w-auto">
+                <button 
+                  onClick={handleInquiry}
+                  className="px-6 py-4 border border-muted-gold/60 text-muted-gold/80 hover:text-muted-gold hover:border-muted-gold transition-all duration-500 uppercase text-[9px] tracking-[0.3em] font-bold rounded-xl"
+                >
+                  Private Inquiry
+                </button>
+                <button 
+                  onClick={handleAcquire}
+                  className="px-8 py-4 bg-muted-gold text-offblack hover:bg-parchment transition-all duration-700 uppercase text-[9px] tracking-[0.4em] font-bold shadow-2xl rounded-xl"
+                >
+                  Acquire Piece
+                </button>
               </div>
             </motion.div>
           </div>
@@ -477,9 +476,9 @@ export default function ProductPage({
               addToCart(product, 1);
               setIsCartOpen(true);
             }}
-            className="px-6 py-3 bg-brilliant-green text-parchment text-[10px] uppercase tracking-widest font-bold"
+            className="px-8 py-4 bg-[#0a2e1f] text-parchment border border-brilliant-green/50 text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-brilliant-green transition-all duration-500 shadow-xl rounded-xl"
           >
-            Add to Archive
+            Add to Cart
           </button>
         </div>
       </motion.div>

@@ -31,6 +31,7 @@ export default function MuseumHero() {
             src={displayProducts[currentIndex].image || "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=2000&auto=format&fit=crop"}
             alt={displayProducts[currentIndex].name}
             fill
+            sizes="100vw"
             className="object-cover opacity-60"
             priority
           />
@@ -55,7 +56,7 @@ export default function MuseumHero() {
               <Link
                 href="/collections"
                 prefetch={false}
-                className="group relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 px-8 py-4 rounded-full transition-all duration-500 hover:bg-white hover:border-white"
+                className="group relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 px-8 py-4 rounded-xl transition-all duration-500 hover:bg-white hover:border-white"
               >
                 <span className="relative z-10 text-[11px] lg:text-[13px] font-bold tracking-[0.2em] text-white uppercase group-hover:text-[#5d735d] transition-colors duration-500">
                   SHOP OUR COLLECTIONS

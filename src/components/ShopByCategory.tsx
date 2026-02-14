@@ -55,6 +55,7 @@ export default function ShopByCategory() {
                     src={category.image}
                     alt={category.name}
                     fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
@@ -64,7 +65,7 @@ export default function ShopByCategory() {
                   </div>
                 </div>
                 <div className="flex items-center justify-center">
-                  <span className="px-4 py-2 md:px-6 md:py-2.5 rounded-full border border-gray-100 text-[9px] md:text-[11px] font-bold uppercase tracking-widest text-gray-500 group-hover:bg-[#5d735d] group-hover:text-white group-hover:border-[#5d735d] transition-all duration-500 shadow-sm group-hover:shadow-md group-hover:-translate-y-0.5">
+                  <span className="px-4 py-2 md:px-6 md:py-2.5 rounded-xl border border-gray-100 text-[9px] md:text-[11px] font-bold uppercase tracking-widest text-gray-500 group-hover:bg-[#5d735d] group-hover:text-white group-hover:border-[#5d735d] transition-all duration-500 shadow-sm group-hover:shadow-md group-hover:-translate-y-0.5">
                     Explore Now
                   </span>
                 </div>

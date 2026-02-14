@@ -28,13 +28,13 @@ export default function PromoHero() {
           <div className="mt-4 flex gap-3">
             <Link
               href="#collections"
-              className="inline-flex items-center rounded-full border border-muted-gold px-6 py-3 text-parchment font-serif transition-all hover:bg-muted-gold hover:text-offblack"
+              className="inline-flex items-center rounded-xl border border-muted-gold px-6 py-3 text-parchment font-serif transition-all hover:bg-muted-gold hover:text-offblack"
             >
               Explore Collections
             </Link>
             <Link
               href="#boutique"
-              className="inline-flex items-center rounded-full border border-muted-gold/60 px-6 py-3 text-parchment/90 transition-all hover:bg-muted-gold/20"
+              className="inline-flex items-center rounded-xl border border-muted-gold/60 px-6 py-3 text-parchment/90 transition-all hover:bg-muted-gold/20"
             >
               Find Boutique
             </Link>

@@ -125,10 +125,10 @@ export default function CheckoutPage() {
       <main className="min-h-screen bg-offblack flex items-center justify-center p-8">
         <div className="fixed inset-0 pointer-events-none opacity-[0.02] z-50" />
         <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="max-w-xl w-full text-center space-y-12 py-24 border border-muted-gold/10 bg-muted-gold/[0.02] rounded-sm"
-        >
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="max-w-xl w-full text-center space-y-12 py-24 border border-muted-gold/10 bg-muted-gold/[0.02] rounded-xl"
+          >
           <div className="flex justify-center">
             <div className="w-20 h-20 rounded-full bg-brilliant-green/20 flex items-center justify-center border border-brilliant-green/30">
               <ShieldCheck className="w-10 h-10 text-brilliant-green" />
@@ -143,7 +143,7 @@ export default function CheckoutPage() {
           </p>
           <Link 
             href="/"
-            className="inline-block px-12 py-4 bg-muted-gold text-offblack text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-parchment transition-all duration-500"
+            className="inline-block px-12 py-4 bg-muted-gold text-offblack text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-parchment transition-all duration-500 rounded-xl"
           >
             Return to Gallery
           </Link>
@@ -158,7 +158,7 @@ export default function CheckoutPage() {
         <div className="space-y-8">
           <ShoppingBag className="w-16 h-16 text-muted-gold/20 mx-auto" />
           <h1 className="font-serif text-3xl text-parchment italic">The Archive is Empty</h1>
-          <Link href="/collections" className="inline-block px-12 py-4 bg-muted-gold text-offblack text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-parchment transition-all duration-500">
+          <Link href="/collections" className="inline-block px-12 py-4 bg-muted-gold text-offblack text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-parchment transition-all duration-500 rounded-xl">
             Explore Collections
           </Link>
         </div>
@@ -228,7 +228,7 @@ export default function CheckoutPage() {
                 <button
                   type="submit"
                   disabled={isProcessing}
-                  className="w-full group relative overflow-hidden bg-muted-gold py-6 text-offblack font-bold uppercase text-[11px] tracking-[0.4em] hover:bg-parchment transition-all duration-500 shadow-2xl disabled:opacity-50"
+                  className="w-full group relative overflow-hidden bg-muted-gold py-6 text-offblack font-bold uppercase text-[11px] tracking-[0.4em] hover:bg-parchment transition-all duration-500 shadow-2xl disabled:opacity-50 rounded-xl"
                 >
                   <span className="flex items-center justify-center gap-3">
                     {isProcessing ? "Processing..." : "Initiate Acquisition"}
@@ -252,7 +252,7 @@ export default function CheckoutPage() {
 
           {/* Order Summary Side */}
           <div className="lg:sticky lg:top-40 h-fit space-y-8">
-            <div className="bg-muted-gold/[0.02] border border-muted-gold/10 p-8 rounded-sm space-y-8">
+            <div className="bg-muted-gold/[0.02] border border-muted-gold/10 p-8 rounded-xl space-y-8">
               <h2 className="font-serif text-xl italic text-parchment/80">Acquisition Summary</h2>
               
               <div className="space-y-4 max-h-[300px] overflow-y-auto pr-4 custom-scrollbar">
@@ -264,6 +264,7 @@ export default function CheckoutPage() {
                           src={item.image} 
                           alt={item.name}
                           fill
+                          sizes="64px"
                           className="object-cover grayscale opacity-80"
                         />
                       )}

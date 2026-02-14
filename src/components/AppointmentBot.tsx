@@ -207,13 +207,13 @@ export default function AppointmentBot() {
             whileTap={{ scale: 0.95 }}
             exit={{ scale: 0, opacity: 0 }}
             onClick={() => setIsOpen(true)}
-            className="group relative flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-[#5d735d] shadow-[0_8px_30px_rgba(93,115,93,0.3)] border border-[#5d735d]/20 transition-all duration-300"
+            className="group relative flex h-16 w-16 items-center justify-center rounded-full bg-brilliant-green shadow-[0_15px_35px_rgba(0,0,0,0.3)] border border-muted-gold/20 transition-all duration-500 overflow-hidden"
           >
-            <div className="relative flex flex-col items-center">
-              <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            <div className="absolute inset-0 bg-white/5 group-hover:bg-white/10 transition-colors" />
+            <div className="relative flex items-center justify-center">
+              <svg className="h-7 w-7 text-muted-gold transition-transform duration-500 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
               </svg>
-              <span className="text-[7px] font-bold tracking-[0.2em] text-white/80 uppercase mt-0.5">Chat</span>
             </div>
           </motion.button>
         )}
@@ -284,7 +284,7 @@ export default function AppointmentBot() {
                           <button
                             key={option}
                             onClick={() => handleOptionClick(option)}
-                            className="rounded-full border border-[#5d735d]/30 bg-white px-4 py-2 text-[11px] font-medium text-gray-700 transition-all hover:border-[#5d735d] hover:bg-[#5d735d]/5 active:scale-95"
+                            className="rounded-xl border border-[#5d735d]/30 bg-white px-4 py-2 text-[11px] font-medium text-gray-700 transition-all hover:border-[#5d735d] hover:bg-[#5d735d]/5 active:scale-95"
                           >
                             {option}
                           </button>
@@ -321,7 +321,7 @@ export default function AppointmentBot() {
                     href="https://wa.me/917977556989" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-3 rounded-2xl bg-[#25D366] py-4 text-[14px] font-bold text-white shadow-[0_10px_20px_rgba(37,211,102,0.2)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_25px_rgba(37,211,102,0.3)] active:scale-[0.98]"
+                    className="flex items-center justify-center gap-3 rounded-xl bg-[#25D366] py-4 text-[14px] font-bold text-white shadow-[0_10px_20px_rgba(37,211,102,0.2)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_25px_rgba(37,211,102,0.3)] active:scale-[0.98]"
                   >
                     <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
                       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.29-4.143c1.589.943 3.197 1.441 4.866 1.442 5.22.002 9.469-4.248 9.471-9.47.001-2.529-.985-4.903-2.777-6.696-1.793-1.793-4.167-2.78-6.697-2.781-5.221 0-9.47 4.248-9.472 9.47-.001 1.902.553 3.758 1.599 5.359l-1.048 3.825 3.931-1.031-.127-.089zm13.313-10.421c-.244-.122-1.441-.712-1.664-.793-.223-.081-.385-.122-.547.122-.162.244-.63.793-.772.955-.142.162-.284.183-.528.061-.244-.122-1.03-.38-1.962-1.211-.725-.647-1.215-1.445-1.357-1.688-.142-.244-.015-.376.107-.497.11-.11.244-.284.365-.427.122-.142.162-.244.244-.406.081-.162.041-.305-.02-.427-.061-.122-.547-1.32-.75-1.81-.197-.477-.397-.412-.547-.419-.142-.007-.305-.008-.467-.008-.162 0-.427.061-.65.305-.223.244-.853.834-.853 2.031 0 1.197.874 2.353.996 2.516.122.163 1.72 2.626 4.167 3.683.582.251 1.036.401 1.391.513.584.186 1.116.16 1.536.097.469-.071 1.441-.589 1.644-1.159.203-.57.203-1.057.142-1.159-.061-.101-.223-.162-.467-.284z" />
@@ -373,7 +373,7 @@ export default function AppointmentBot() {
                   <button
                     onClick={handleSend}
                     disabled={!inputValue.trim()}
-                    className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-900 text-white transition-all disabled:opacity-20 hover:scale-105 active:scale-95 shadow-lg"
+                    className="flex h-8 w-8 items-center justify-center rounded-xl bg-gray-900 text-white transition-all disabled:opacity-20 hover:scale-105 active:scale-95 shadow-lg"
                   >
                     <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 12h14M12 5l7 7-7 7" />
@@ -386,7 +386,7 @@ export default function AppointmentBot() {
                     href="https://wa.me/917977556989" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 rounded-full bg-[#25D366]/10 border border-[#25D366]/20 py-2 px-6 text-[10px] font-bold tracking-[0.15em] text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all duration-300 uppercase group shadow-sm hover:shadow-[#25D366]/20"
+                    className="flex items-center justify-center gap-2 rounded-xl bg-[#25D366]/10 border border-[#25D366]/20 py-2 px-6 text-[10px] font-bold tracking-[0.15em] text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all duration-300 uppercase group shadow-sm hover:shadow-[#25D366]/20"
                   >
                     <svg className="h-3.5 w-3.5 fill-current transition-transform group-hover:scale-110" viewBox="0 0 24 24">
                       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.412-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.309 1.656zm6.29-4.143c1.589.943 3.197 1.441 4.866 1.442 5.22.002 9.469-4.248 9.471-9.47.001-2.529-.985-4.903-2.777-6.696-1.793-1.793-4.167-2.78-6.697-2.781-5.221 0-9.47 4.248-9.472 9.47-.001 1.902.553 3.758 1.599 5.359l-1.048 3.825 3.931-1.031-.127-.089zm13.313-10.421c-.244-.122-1.441-.712-1.664-.793-.223-.081-.385-.122-.547.122-.162.244-.63.793-.772.955-.142.162-.284.183-.528.061-.244-.122-1.03-.38-1.962-1.211-.725-.647-1.215-1.445-1.357-1.688-.142-.244-.015-.376.107-.497.11-.11.244-.284.365-.427.122-.142.162-.244.244-.406.081-.162.041-.305-.02-.427-.061-.122-.547-1.32-.75-1.81-.197-.477-.397-.412-.547-.419-.142-.007-.305-.008-.467-.008-.162 0-.427.061-.65.305-.223.244-.853.834-.853 2.031 0 1.197.874 2.353.996 2.516.122.163 1.72 2.626 4.167 3.683.582.251 1.036.401 1.391.513.584.186 1.116.16 1.536.097.469-.071 1.441-.589 1.644-1.159.203-.57.203-1.057.142-1.159-.061-.101-.223-.162-.467-.284z" />

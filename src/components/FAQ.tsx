@@ -42,7 +42,7 @@ export default function FAQ() {
           {FAQS.map((faq, index) => (
             <div 
               key={index} 
-              className="border border-muted-gold/10 bg-muted-gold/[0.02] rounded-sm overflow-hidden"
+              className="border border-muted-gold/10 bg-muted-gold/[0.02] rounded-xl overflow-hidden"
             >
               <button
                 onClick={() => setActiveIndex(activeIndex === index ? null : index)}

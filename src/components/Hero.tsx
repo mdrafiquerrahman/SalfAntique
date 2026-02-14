@@ -40,7 +40,7 @@ export default function Hero() {
         >
           <Link
             href="#gallery"
-            className="inline-flex items-center rounded-full border border-muted-gold px-6 py-3 text-parchment font-serif transition-all hover:bg-muted-gold hover:text-offblack"
+            className="inline-flex items-center rounded-xl border border-muted-gold px-6 py-3 text-parchment font-serif transition-all hover:bg-muted-gold hover:text-offblack"
           >
             Explore Collection
           </Link>

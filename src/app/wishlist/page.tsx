@@ -19,7 +19,7 @@ export default function WishlistPage() {
         </div>
 
         {wishlistCount === 0 ? (
-          <div className="py-32 border border-dashed border-gray-200 rounded-lg bg-white flex flex-col items-center justify-center">
+          <div className="py-32 border border-dashed border-gray-200 rounded-xl bg-white flex flex-col items-center justify-center">
             <svg className="w-16 h-16 text-gray-200 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
@@ -27,7 +27,7 @@ export default function WishlistPage() {
             <p className="mt-2 text-sm text-gray-400 italic mb-10">Start saving your favorite antique pieces here.</p>
             <Link 
               href="/" 
-              className="border border-gray-900 px-10 py-3 text-[11px] font-bold tracking-[0.2em] text-gray-900 uppercase hover:bg-gray-900 hover:text-white transition-all"
+              className="border border-gray-900 px-10 py-3 text-[11px] font-bold tracking-[0.2em] text-gray-900 uppercase hover:bg-gray-900 hover:text-white transition-all rounded-xl"
             >
               Explore Collections
             </Link>

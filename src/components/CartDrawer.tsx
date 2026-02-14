@@ -7,7 +7,7 @@ import Link from "next/link";
 import { X, Plus, Minus, ShoppingBag, ArrowRight } from "lucide-react";
 
 export default function CartDrawer() {
-  const { cart, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity, cartTotal } = useCart();
+  const { cart, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity, cartTotal, clearCart } = useCart();
 
   const freeShippingThreshold = 5000;
   const shippingProgress = Math.min((cartTotal / freeShippingThreshold) * 100, 100);
@@ -38,30 +38,44 @@ export default function CartDrawer() {
             <div className="p-6 border-b border-muted-gold/10 flex items-center justify-between bg-offblack/80 backdrop-blur-md">
               <div className="flex items-center gap-3">
                 <ShoppingBag className="w-5 h-5 text-muted-gold" />
-                <h2 className="font-serif text-xl text-parchment uppercase tracking-widest">Your Archive</h2>
-                <span className="bg-brilliant-green/20 text-brilliant-green text-[10px] px-2 py-0.5 rounded-full font-bold">
+                <h2 className="font-serif text-xl text-parchment uppercase tracking-widest">Your Cart</h2>
+                <span className="bg-brilliant-green/20 text-brilliant-green text-[10px] px-2 py-0.5 rounded-xl font-bold">
                   {cart.length} ITEMS
                 </span>
               </div>
-              <button
-                onClick={() => setIsCartOpen(false)}
-                className="p-2 hover:bg-muted-gold/10 rounded-full transition-colors group"
-              >
-                <X className="w-5 h-5 text-muted-gold group-hover:rotate-90 transition-transform duration-300" />
-              </button>
+              <div className="flex items-center gap-2">
+                {cart.length > 0 && (
+                  <button
+                    onClick={() => {
+                      if (window.confirm("Are you sure you want to clear your cart?")) {
+                        clearCart();
+                      }
+                    }}
+                    className="text-[9px] text-muted-gold/60 hover:text-muted-gold uppercase tracking-widest transition-colors mr-2"
+                  >
+                    Clear All
+                  </button>
+                )}
+                <button
+                  onClick={() => setIsCartOpen(false)}
+                  className="p-2 hover:bg-muted-gold/10 rounded-xl transition-colors group"
+                >
+                  <X className="w-5 h-5 text-muted-gold group-hover:rotate-90 transition-transform duration-300" />
+                </button>
+              </div>
             </div>
 
             {/* Free Shipping Progress */}
             <div className="px-6 py-4 bg-muted-gold/5 border-b border-muted-gold/10">
               <div className="flex justify-between text-[11px] uppercase tracking-wider mb-2">
-                <span className="text-parchment/70 font-medium">
+                <span className="text-parchment/90 font-medium">
                   {remainingForFreeShipping > 0 
                     ? `Add ₹${remainingForFreeShipping.toLocaleString()} for free shipping`
                     : "You've earned free shipping!"}
                 </span>
                 <span className="text-muted-gold font-bold">{Math.round(shippingProgress)}%</span>
               </div>
-              <div className="h-1.5 w-full bg-muted-gold/10 rounded-full overflow-hidden">
+              <div className="h-1.5 w-full bg-muted-gold/20 rounded-xl overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${shippingProgress}%` }}
@@ -74,18 +88,18 @@ export default function CartDrawer() {
             <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide">
               {cart.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-center space-y-6">
-                  <div className="w-20 h-20 bg-muted-gold/5 rounded-full flex items-center justify-center">
-                    <ShoppingBag className="w-10 h-10 text-muted-gold/20" />
+                  <div className="w-20 h-20 bg-muted-gold/10 rounded-xl flex items-center justify-center">
+                    <ShoppingBag className="w-10 h-10 text-muted-gold/40" />
                   </div>
                   <div>
-                    <h3 className="font-serif text-lg text-parchment mb-2">The Archive is Empty</h3>
-                    <p className="text-parchment/40 text-sm italic max-w-[200px] mx-auto">
+                    <h3 className="font-serif text-lg text-parchment mb-2">The Cart is Empty</h3>
+                    <p className="text-parchment/70 text-sm italic max-w-[200px] mx-auto">
                       Your curated collection will appear here as you explore our treasures.
                     </p>
                   </div>
                   <button
                     onClick={() => setIsCartOpen(false)}
-                    className="px-8 py-3 bg-brilliant-green text-parchment text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-emerald-900 transition-colors shadow-lg shadow-black/20"
+                    className="px-8 py-3 bg-brilliant-green text-parchment text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-emerald-900 transition-colors shadow-lg shadow-black/20 rounded-xl"
                   >
                     Continue Exploring
                   </button>
@@ -105,6 +119,7 @@ export default function CartDrawer() {
                           src={item.image}
                           alt={item.name}
                           fill
+                          sizes="96px"
                           className="object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                       ) : (
@@ -125,16 +140,16 @@ export default function CartDrawer() {
                           </Link>
                           <button
                             onClick={() => removeFromCart(item.slug)}
-                            className="text-muted-gold/40 hover:text-red-400 transition-colors"
+                            className="text-muted-gold/60 hover:text-red-400 transition-colors"
                           >
                             <X className="w-3.5 h-3.5" />
                           </button>
                         </div>
-                        <p className="text-[10px] text-muted-gold/60 uppercase tracking-widest">{item.era}</p>
+                        <p className="text-[10px] text-muted-gold/80 uppercase tracking-widest">{item.era}</p>
                       </div>
                       
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center border border-muted-gold/20 rounded-sm">
+                        <div className="flex items-center border border-muted-gold/20 rounded-xl">
                           <button
                             onClick={() => updateQuantity(item.slug, item.quantity - 1)}
                             className="p-1.5 text-muted-gold hover:bg-muted-gold/10 transition-colors"
@@ -161,15 +176,15 @@ export default function CartDrawer() {
             {cart.length > 0 && (
               <div className="p-6 bg-muted-gold/5 border-t border-muted-gold/10 space-y-4">
                 <div className="space-y-2">
-                  <div className="flex justify-between items-center text-[11px] text-parchment/60 uppercase tracking-[0.2em]">
+                  <div className="flex justify-between items-center text-[11px] text-parchment/80 uppercase tracking-[0.2em]">
                     <span>Subtotal</span>
                     <span>₹{cartTotal.toLocaleString()}</span>
                   </div>
-                  <div className="flex justify-between items-center text-[11px] text-parchment/60 uppercase tracking-[0.2em]">
+                  <div className="flex justify-between items-center text-[11px] text-parchment/80 uppercase tracking-[0.2em]">
                     <span>Shipping</span>
                     <span>{cartTotal >= freeShippingThreshold ? "FREE" : "Calculated at checkout"}</span>
                   </div>
-                  <div className="flex justify-between items-center pt-2 border-t border-muted-gold/10">
+                  <div className="flex justify-between items-center pt-2 border-t border-muted-gold/20">
                     <span className="text-[13px] text-parchment font-serif uppercase tracking-widest">Total</span>
                     <span className="text-xl text-muted-gold font-serif">₹{cartTotal.toLocaleString()}</span>
                   </div>
@@ -179,7 +194,7 @@ export default function CartDrawer() {
                   <Link 
                     href="/checkout"
                     onClick={() => setIsCartOpen(false)}
-                    className="w-full py-4 bg-brilliant-green text-parchment text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-emerald-900 transition-all flex items-center justify-center gap-2 group shadow-xl shadow-black/40"
+                    className="w-full py-4 bg-brilliant-green text-parchment text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-emerald-900 transition-all flex items-center justify-center gap-2 group shadow-xl shadow-black/40 rounded-xl"
                   >
                     Secure Checkout
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -187,11 +202,11 @@ export default function CartDrawer() {
                   <Link 
                     href="/cart"
                     onClick={() => setIsCartOpen(false)}
-                    className="w-full py-4 border border-muted-gold/20 text-parchment text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-muted-gold/5 transition-all flex items-center justify-center gap-2"
+                    className="w-full py-4 border border-muted-gold/40 text-parchment text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-muted-gold/10 transition-all flex items-center justify-center gap-2 rounded-xl"
                   >
-                    View Full Archive
+                    View Full Cart
                   </Link>
-                  <p className="text-[9px] text-parchment/30 text-center italic">
+                  <p className="text-[9px] text-parchment/60 text-center italic">
                     Taxes and shipping calculated at next step
                   </p>
                 </div>

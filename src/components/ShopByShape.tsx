@@ -31,7 +31,7 @@ export default function ShopByShape() {
               className="group flex flex-col items-center gap-3 transition-all"
             >
               <motion.div 
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-100 bg-gray-50 text-gray-400 group-hover:border-brilliant-green group-hover:text-brilliant-green group-hover:bg-white transition-all duration-300"
+                className="flex h-12 w-12 items-center justify-center rounded-xl border border-gray-100 bg-gray-50 text-gray-400 group-hover:border-brilliant-green group-hover:text-brilliant-green group-hover:bg-white transition-all duration-300"
                 whileHover={{ y: -5 }}
               >
                 <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

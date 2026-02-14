@@ -9,13 +9,13 @@ export default function FindBoutique() {
         <div className="mt-4 flex flex-wrap gap-3">
           <Link
             href="/#contact"
-            className="inline-flex items-center rounded-full border border-muted-gold px-6 py-3 text-parchment transition-all hover:bg-muted-gold hover:text-offblack"
+            className="inline-flex items-center rounded-xl border border-muted-gold px-6 py-3 text-parchment transition-all hover:bg-muted-gold hover:text-offblack"
           >
             Book Consultation
           </Link>
           <Link
             href="/#contact"
-            className="inline-flex items-center rounded-full border border-muted-gold/60 px-6 py-3 text-parchment/90 transition-all hover:bg-muted-gold/20"
+            className="inline-flex items-center rounded-xl border border-muted-gold/60 px-6 py-3 text-parchment/90 transition-all hover:bg-muted-gold/20"
           >
             Contact Boutique
           </Link>

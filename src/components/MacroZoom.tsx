@@ -26,6 +26,7 @@ export default function MacroZoom({ image, title }: { image: string; title: stri
           src={image}
           alt={title}
           fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           className={`object-contain transition-opacity duration-300 ${isZoomed ? "opacity-0" : "opacity-100"}`}
         />
         
@@ -47,7 +48,7 @@ export default function MacroZoom({ image, title }: { image: string; title: stri
         </AnimatePresence>
 
         <div className="absolute bottom-3 left-3 flex items-center gap-2">
-          <div className="rounded-full bg-offblack/60 backdrop-blur-md border border-muted-gold/40 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-muted-gold">
+          <div className="rounded-xl bg-offblack/60 backdrop-blur-md border border-muted-gold/40 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-muted-gold">
             Macro Detail
           </div>
         </div>

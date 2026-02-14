@@ -82,7 +82,7 @@ export default function ContactFooter() {
                   <button 
                     type="submit"
                     disabled={status === "loading"}
-                    className="bg-[#5d735d] px-10 py-4 text-white text-[12px] font-bold tracking-[0.2em] rounded-full hover:bg-[#4a5c4a] transition-all duration-300 shadow-lg hover:shadow-[#5d735d]/20 whitespace-nowrap disabled:opacity-50 flex items-center justify-center min-w-[160px]"
+                    className="bg-[#5d735d] px-10 py-4 text-white text-[12px] font-bold tracking-[0.2em] rounded-xl hover:bg-[#4a5c4a] transition-all duration-300 shadow-lg hover:shadow-[#5d735d]/20 whitespace-nowrap disabled:opacity-50 flex items-center justify-center min-w-[160px]"
                   >
                     {status === "loading" ? (
                       <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

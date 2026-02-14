@@ -60,7 +60,7 @@ export default function AppointmentPage() {
             </p>
             <Link 
               href="/" 
-              className="mt-12 inline-block bg-brilliant-green px-10 py-3 text-[11px] font-bold tracking-[0.2em] text-white uppercase hover:bg-opacity-90 transition-all rounded-full"
+              className="mt-12 inline-block bg-brilliant-green px-10 py-3 text-[11px] font-bold tracking-[0.2em] text-white uppercase hover:bg-opacity-90 transition-all rounded-xl"
             >
               Return Home
             </Link>
@@ -160,7 +160,7 @@ export default function AppointmentPage() {
             <button 
               type="submit" 
               disabled={isSubmitting}
-              className={`w-full bg-brilliant-green py-5 text-[11px] font-bold tracking-[0.2em] text-white uppercase hover:bg-opacity-90 transition-all flex items-center justify-center gap-3 rounded-full ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+              className={`w-full bg-brilliant-green py-5 text-[11px] font-bold tracking-[0.2em] text-white uppercase hover:bg-opacity-90 transition-all flex items-center justify-center gap-3 rounded-xl ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
             >
               {isSubmitting ? (
                 <>

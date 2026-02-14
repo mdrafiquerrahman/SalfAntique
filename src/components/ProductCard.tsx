@@ -68,7 +68,7 @@ export default function ProductCard({ product }: { product: Product }) {
               draggable={false}
             />
           ) : (
-            <div className="h-full w-full bg-gray-100 rounded-lg" />
+            <div className="h-full w-full bg-gray-100 rounded-xl" />
           )}
         </Link>
 
@@ -76,7 +76,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <div className="absolute inset-0 z-10 hidden md:block opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
           {/* Top Right Search */}
           <button 
-            className="absolute top-4 right-4 p-2.5 rounded-full bg-white/90 backdrop-blur-sm shadow-sm pointer-events-auto hover:bg-white hover:scale-110 transition-all duration-300 group/search"
+            className="absolute top-4 right-4 p-2.5 rounded-xl bg-white/90 backdrop-blur-sm shadow-sm pointer-events-auto hover:bg-white hover:scale-110 transition-all duration-300 group/search"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -98,9 +98,9 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
 
         {/* Mobile Action Icons */}
-        <div className="absolute right-3 top-1/2 -translate-y-1/2 flex md:hidden flex-col gap-2 z-10">
+        <div className="absolute top-3 right-3 flex md:hidden flex-col gap-2 z-10">
           <button 
-            className="p-2 rounded-full bg-gray-200/50 hover:bg-white transition-all shadow-sm"
+            className="p-2 rounded-xl bg-white/90 backdrop-blur-sm shadow-sm"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -110,7 +110,7 @@ export default function ProductCard({ product }: { product: Product }) {
             <Search className="w-4 h-4 text-gray-700" />
           </button>
           <button 
-            className="p-2 rounded-full bg-gray-200/50 hover:bg-white transition-all shadow-sm"
+            className="p-2 rounded-xl bg-white/90 backdrop-blur-sm shadow-sm"
             onClick={handleAddToCart}
           >
             <ShoppingCart className="w-4 h-4 text-gray-700" />
@@ -133,8 +133,11 @@ export default function ProductCard({ product }: { product: Product }) {
       </div>
 
       {/* Product Info */}
-      <div className="mt-3 flex flex-col gap-0.5">
-        <h3 className="text-[14px] font-medium text-gray-900 leading-tight line-clamp-2 min-h-[2.5rem] font-sans">
+      <Link 
+        href={`/products/${product.slug}`}
+        className="mt-3 flex flex-col gap-0.5 group/info"
+      >
+        <h3 className="text-[14px] font-medium text-gray-900 leading-tight line-clamp-2 min-h-[2.5rem] font-sans group-hover/info:text-[#5d735d] transition-colors">
           {product.name}
         </h3>
         <div className="flex items-center gap-2">
@@ -146,7 +149,7 @@ export default function ProductCard({ product }: { product: Product }) {
             }).format(product.price)}
           </span>
         </div>
-      </div>
+      </Link>
     </motion.div>
   );
 }

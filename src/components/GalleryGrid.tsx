@@ -58,7 +58,7 @@ export default function GalleryGrid({ era, category, sort }: GalleryGridProps) {
         <p className="text-gray-400 font-serif italic">No pieces found matching your criteria.</p>
         <button 
           onClick={() => window.location.href = '/jewelry'}
-          className="mt-8 px-10 py-3 bg-[#5d735d] text-white text-[11px] font-bold tracking-[0.2em] rounded-full hover:bg-[#4a5c4a] transition-all duration-300 shadow-lg uppercase"
+          className="mt-8 px-10 py-3 bg-[#5d735d] text-white text-[11px] font-bold tracking-[0.2em] rounded-xl hover:bg-[#4a5c4a] transition-all duration-300 shadow-lg uppercase"
         >
           View All Jewelry
         </button>
