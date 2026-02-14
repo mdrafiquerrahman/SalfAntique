@@ -17,7 +17,7 @@ export default function MuseumHero() {
   }, [displayProducts.length]);
 
   return (
-    <section className="relative h-[600px] lg:h-[700px] w-full overflow-hidden bg-offblack">
+    <section className="relative h-[450px] lg:h-[550px] w-full overflow-hidden bg-offblack">
       <AnimatePresence initial={false} mode="popLayout">
         <motion.div
           key={currentIndex}

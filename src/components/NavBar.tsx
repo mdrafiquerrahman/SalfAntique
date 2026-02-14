@@ -112,7 +112,7 @@ export default function NavBar() {
           </div>
 
           {/* Desktop Logo & Utilities Row */}
-          <div className="hidden lg:grid grid-cols-3 items-center py-1">
+          <div className="hidden lg:grid grid-cols-3 items-center py-3">
             <div className="flex items-center gap-6 text-[10px] font-medium text-gray-400 uppercase tracking-widest">
               <Link href="/stores" className="hover:text-brilliant-green transition-colors">Our Office</Link>
               <Link href="/appointment" className="hover:text-brilliant-green transition-colors">Support</Link>
@@ -120,19 +120,19 @@ export default function NavBar() {
 
             <div className="flex justify-center">
               <Link href="/" prefetch={false} className="flex items-center gap-5 group">
-                <span className="text-2xl lg:text-3xl font-serif tracking-[0.2em] text-gray-900 uppercase group-hover:text-brilliant-green transition-colors duration-500">
+                <span className="text-3xl lg:text-4xl font-serif tracking-[0.2em] text-gray-900 uppercase group-hover:text-brilliant-green transition-colors duration-500">
                   Salf
                 </span>
-                <div className="relative w-12 h-12 overflow-hidden rounded-full border border-gray-100 group-hover:border-brilliant-green transition-all duration-500 shadow-sm group-hover:shadow-md">
+                <div className="relative w-16 h-16 overflow-hidden rounded-full border border-gray-100 group-hover:border-brilliant-green transition-all duration-500 shadow-sm group-hover:shadow-md">
                   <Image
                     src="/logo.png"
                     alt="Salf Antqe Logo"
                     fill
-                    sizes="48px"
+                    sizes="64px"
                     className="object-cover"
                   />
                 </div>
-                <span className="text-2xl lg:text-3xl font-serif tracking-[0.2em] text-gray-900 uppercase group-hover:text-brilliant-green transition-colors duration-500">
+                <span className="text-3xl lg:text-4xl font-serif tracking-[0.2em] text-gray-900 uppercase group-hover:text-brilliant-green transition-colors duration-500">
                   Antqe
                 </span>
               </Link>
@@ -239,7 +239,7 @@ export default function NavBar() {
           </AnimatePresence>
 
           {/* Bottom Row: Navigation */}
-          <nav className="hidden lg:flex justify-center gap-8 lg:gap-12 pb-2 text-[12px] font-semibold tracking-widest text-gray-700 uppercase">
+          <nav className="hidden lg:flex justify-center gap-8 lg:gap-12 pb-4 text-[13px] font-semibold tracking-widest text-gray-700 uppercase">
             <div 
               className="relative group"
               onMouseEnter={() => setActiveMegaMenu('gemstones')}
