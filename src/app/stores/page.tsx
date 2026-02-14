@@ -8,7 +8,7 @@ export default function StoresPage() {
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="text-center">
           <h1 className="font-serif text-3xl lg:text-4xl text-gray-900 tracking-wide uppercase italic">
-            Our Store
+            Our Office
           </h1>
           <div className="mt-4 h-px w-20 bg-brilliant-green mx-auto opacity-30"></div>
           

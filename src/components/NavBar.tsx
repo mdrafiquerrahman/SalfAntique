@@ -81,8 +81,7 @@ export default function NavBar() {
             </div>
 
             <div className="hidden lg:flex items-center gap-6">
-              <Link href="/help" prefetch={false} className="hover:text-[#5d735d] transition-colors">Help</Link>
-              <Link href="/stores" prefetch={false} className="hover:text-[#5d735d] transition-colors">Stores</Link>
+              <Link href="/stores" prefetch={false} className="hover:text-[#5d735d] transition-colors">Our Office</Link>
               <Link 
                 href="/appointment" 
                 prefetch={false} 
