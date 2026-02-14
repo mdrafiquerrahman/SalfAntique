@@ -18,20 +18,20 @@ export default function MuseumHero() {
 
   return (
     <section className="relative h-[600px] lg:h-[700px] w-full overflow-hidden bg-offblack">
-      <AnimatePresence mode="wait">
+      <AnimatePresence initial={false} mode="popLayout">
         <motion.div
           key={currentIndex}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
+          initial={{ x: "100%", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: "-100%", opacity: 0 }}
+          transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
           className="absolute inset-0 z-0"
         >
           <Image
             src={displayProducts[currentIndex].image || "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=2000&auto=format&fit=crop"}
             alt={displayProducts[currentIndex].name}
             fill
-            className="object-cover opacity-50 scale-105"
+            className="object-cover opacity-50"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-offblack via-transparent to-black/40" />
@@ -39,14 +39,14 @@ export default function MuseumHero() {
       </AnimatePresence>
 
       <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-4 lg:px-20">
-        <div className="max-w-2xl text-left">
-          <AnimatePresence mode="wait">
+        <div className="max-w-2xl text-left overflow-hidden">
+          <AnimatePresence initial={false} mode="popLayout">
             <motion.div
               key={currentIndex}
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 30 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -50, opacity: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="space-y-6"
             >
               <div className="space-y-2">
