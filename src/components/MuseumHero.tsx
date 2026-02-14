@@ -25,16 +25,18 @@ export default function MuseumHero() {
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: "-100%", opacity: 0 }}
           transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 flex items-center justify-center p-8 lg:p-20"
         >
-          <Image
-            src={displayProducts[currentIndex].image || "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=2000&auto=format&fit=crop"}
-            alt={displayProducts[currentIndex].name}
-            fill
-            className="object-cover opacity-50"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-offblack via-transparent to-black/40" />
+          <div className="relative h-full w-full max-w-5xl">
+            <Image
+              src={displayProducts[currentIndex].image || "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=2000&auto=format&fit=crop"}
+              alt={displayProducts[currentIndex].name}
+              fill
+              className="object-contain opacity-60"
+              priority
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-offblack via-transparent to-black/20" />
         </motion.div>
       </AnimatePresence>
 
