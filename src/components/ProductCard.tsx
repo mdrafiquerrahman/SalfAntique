@@ -5,11 +5,25 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import type { Product } from "../data/products";
 import { useCart } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
 import { Heart, Search, ShoppingCart } from "lucide-react";
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addToCart, setIsCartOpen } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const router = useRouter();
+
+  const isFavorite = isInWishlist(product.slug);
+
+  const toggleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isFavorite) {
+      removeFromWishlist(product.slug);
+    } else {
+      addToWishlist(product);
+    }
+  };
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -105,13 +119,16 @@ export default function ProductCard({ product }: { product: Product }) {
 
         {/* Heart Icon */}
         <button 
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-          }}
+          onClick={toggleWishlist}
           className="absolute bottom-3 left-3 z-10 p-1 transition-all"
         >
-          <Heart className="w-5 h-5 text-gray-700 hover:text-red-500 transition-colors stroke-[1.5px]" />
+          <Heart 
+            className={`w-5 h-5 transition-all duration-300 stroke-[1.5px] ${
+              isFavorite 
+                ? "text-red-500 fill-red-500 scale-110" 
+                : "text-gray-700 hover:text-red-500"
+            }`} 
+          />
         </button>
       </div>
 

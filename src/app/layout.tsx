@@ -7,6 +7,7 @@ import ContactFooter from "../components/ContactFooter";
 import AppointmentBot from "../components/AppointmentBot";
 import CartDrawer from "../components/CartDrawer";
 import { CartProvider } from "../context/CartContext";
+import { WishlistProvider } from "../context/WishlistContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -37,11 +38,13 @@ export default function RootLayout({
         className={`${inter.variable} ${cormorant.variable} antialiased`}
       >
         <CartProvider>
-          <NavBar />
-          <CartDrawer />
-          <TransitionLayout>{children}</TransitionLayout>
-          <ContactFooter />
-          <AppointmentBot />
+          <WishlistProvider>
+            <NavBar />
+            <CartDrawer />
+            <TransitionLayout>{children}</TransitionLayout>
+            <ContactFooter />
+            <AppointmentBot />
+          </WishlistProvider>
         </CartProvider>
       </body>
     </html>
