@@ -25,7 +25,7 @@ const HELP_CATEGORIES = [
       },
       {
         q: "Can I view pieces in person?",
-        a: "Yes, we offer private viewings at our curated stores by appointment only. You can schedule a visit through our Virtual Appointment page or via WhatsApp."
+        a: "Yes, we offer private viewings at our curated stores by appointment only. You can schedule a visit through our Customer Support page or via WhatsApp."
       }
     ]
   },

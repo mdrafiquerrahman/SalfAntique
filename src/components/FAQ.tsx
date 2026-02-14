@@ -11,7 +11,7 @@ const FAQS = [
   },
   {
     question: "Do you offer private viewings?",
-    answer: "Yes, we offer both virtual and in-person private consultations. You can schedule a session through our curator chatbot or via the 'Virtual Appointment' section in the navigation bar."
+    answer: "Yes, we offer both virtual and in-person private consultations. You can schedule a session through our curator chatbot or via the 'Customer Support' section in the navigation bar."
   },
   {
     question: "What is your shipping and delivery policy?",

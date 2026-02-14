@@ -23,7 +23,7 @@ const QUESTIONS = [
   { 
     field: "purpose", 
     question: "Greetings. I am your Salf Antqe curator. How may I assist you today?",
-    options: ["Schedule Appointment", "Inquire about a piece", "General Inquiry"]
+    options: ["Contact Support", "Inquire about a piece", "General Inquiry"]
   },
   { field: "name", question: "I would be honored to assist you. May I ask for your full name?" },
   { field: "phone", question: "A pleasure. What is the best phone number to reach you at?" },
@@ -312,6 +312,11 @@ export default function AppointmentBot() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="flex flex-col gap-3 pt-4"
                 >
+                  <div className="flex flex-col items-center gap-3 py-2">
+                    <div className="h-[1px] w-full bg-gray-100 relative">
+                      <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-3 text-[10px] font-bold text-gray-300 tracking-[0.2em] uppercase">OR</span>
+                    </div>
+                  </div>
                   <a 
                     href="https://wa.me/917977556989" 
                     target="_blank" 

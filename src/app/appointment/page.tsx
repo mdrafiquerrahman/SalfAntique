@@ -56,7 +56,7 @@ export default function AppointmentPage() {
             <h1 className="font-serif text-3xl text-gray-900 tracking-wide uppercase italic">Thank You</h1>
             <div className="mt-4 h-px w-20 bg-brilliant-green mx-auto opacity-30"></div>
             <p className="mt-8 text-gray-600 font-serif text-lg italic">
-              Your virtual appointment request has been received. Our curator will contact you shortly to confirm a time.
+              Your customer support request has been received. Our team will contact you shortly.
             </p>
             <Link 
               href="/" 
@@ -75,11 +75,11 @@ export default function AppointmentPage() {
       <div className="mx-auto max-w-3xl px-4 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="font-serif text-3xl lg:text-4xl text-gray-900 tracking-wide uppercase italic">
-            Virtual Appointment
+            Customer Support
           </h1>
           <div className="mt-4 h-px w-20 bg-brilliant-green mx-auto opacity-30"></div>
           <p className="mt-6 text-gray-700 font-serif italic text-lg">
-            Experience our collection from the comfort of your home with a private virtual consultation.
+            How can we help you? Send us a message and our team will get back to you shortly.
           </p>
         </div>
 
