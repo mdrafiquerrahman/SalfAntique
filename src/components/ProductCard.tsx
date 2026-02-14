@@ -8,8 +8,15 @@ import { useCart } from "../context/CartContext";
 import { Heart, Search, ShoppingCart } from "lucide-react";
 
 export default function ProductCard({ product }: { product: Product }) {
-  const { addToCart } = useCart();
+  const { addToCart, setIsCartOpen } = useCart();
   const router = useRouter();
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(product);
+    setIsCartOpen(true);
+  };
 
   return (
     <motion.div 
@@ -69,11 +76,7 @@ export default function ProductCard({ product }: { product: Product }) {
           <div className="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition-all duration-500 pointer-events-auto">
             <button 
               className="w-full py-3 bg-white/95 backdrop-blur-md text-gray-900 text-[13px] font-bold tracking-wide rounded-xl shadow-lg hover:bg-[#5d735d] hover:text-white transition-all duration-300"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                addToCart(product);
-              }}
+              onClick={handleAddToCart}
             >
               ADD TO CART
             </button>
@@ -94,11 +97,7 @@ export default function ProductCard({ product }: { product: Product }) {
           </button>
           <button 
             className="p-2 rounded-full bg-gray-200/50 hover:bg-white transition-all shadow-sm"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              addToCart(product);
-            }}
+            onClick={handleAddToCart}
           >
             <ShoppingCart className="w-4 h-4 text-gray-700" />
           </button>
