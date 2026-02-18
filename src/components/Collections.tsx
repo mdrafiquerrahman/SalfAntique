@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import OrnateFrame from "./OrnateFrame";
 
 const items = [
   { key: "victorian", label: "Victorian", bg: "from-[#5b3a3a] to-[#2a1e1e]" },

@@ -122,28 +122,28 @@ export default function CheckoutPage() {
 
   if (isSuccess) {
     return (
-      <main className="min-h-screen bg-offblack flex items-center justify-center p-8">
+      <main className="min-h-screen bg-white flex items-center justify-center p-8">
         <div className="fixed inset-0 pointer-events-none opacity-[0.02] z-50" />
         <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="max-w-xl w-full text-center space-y-12 py-24 border border-muted-gold/10 bg-muted-gold/[0.02] rounded-xl"
+            className="max-w-xl w-full text-center space-y-12 py-24 border border-gray-200 bg-gray-50 rounded-xl"
           >
           <div className="flex justify-center">
-            <div className="w-20 h-20 rounded-full bg-brilliant-green/20 flex items-center justify-center border border-brilliant-green/30">
+            <div className="w-20 h-20 rounded-full bg-brilliant-green/10 flex items-center justify-center border border-brilliant-green/20">
               <ShieldCheck className="w-10 h-10 text-brilliant-green" />
             </div>
           </div>
           <div className="space-y-6">
-            <h1 className="font-serif text-4xl lg:text-6xl text-parchment tracking-tighter italic">Acquisition Confirmed</h1>
-            <p className="text-muted-gold/60 font-sans text-[11px] uppercase tracking-[0.4em]">Transaction Successful</p>
+            <h1 className="font-serif text-4xl lg:text-6xl text-gray-900 tracking-tighter italic">Acquisition Confirmed</h1>
+            <p className="text-gray-500 font-sans text-[11px] uppercase tracking-[0.4em]">Transaction Successful</p>
           </div>
-          <p className="text-parchment/60 font-serif text-xl italic px-12 leading-relaxed">
+          <p className="text-gray-600 font-serif text-xl italic px-12 leading-relaxed">
             Your selection has been secured. A curator will reach out shortly to coordinate the private delivery of your treasures.
           </p>
           <Link 
             href="/"
-            className="inline-block px-12 py-4 bg-muted-gold text-offblack text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-parchment transition-all duration-500 rounded-xl"
+            className="inline-block px-12 py-4 bg-brilliant-green text-white text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-brilliant-green/90 transition-all duration-500 rounded-xl"
           >
             Return to Gallery
           </Link>
@@ -154,11 +154,11 @@ export default function CheckoutPage() {
 
   if (cart.length === 0 && !isSuccess) {
     return (
-      <main className="min-h-screen bg-offblack flex items-center justify-center p-8 text-center">
+      <main className="min-h-screen bg-white flex items-center justify-center p-8 text-center">
         <div className="space-y-8">
-          <ShoppingBag className="w-16 h-16 text-muted-gold/20 mx-auto" />
-          <h1 className="font-serif text-3xl text-parchment italic">The Archive is Empty</h1>
-          <Link href="/collections" className="inline-block px-12 py-4 bg-muted-gold text-offblack text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-parchment transition-all duration-500 rounded-xl">
+          <ShoppingBag className="w-16 h-16 text-gray-300 mx-auto" />
+          <h1 className="font-serif text-3xl text-gray-900 italic">The Archive is Empty</h1>
+          <Link href="/collections" className="inline-block px-12 py-4 bg-brilliant-green text-white text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-brilliant-green/90 transition-all duration-500 rounded-xl">
             Explore Collections
           </Link>
         </div>
@@ -167,7 +167,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <main className="min-h-screen bg-offblack text-parchment pt-32 pb-24 px-4 lg:px-8">
+    <main className="min-h-screen bg-white text-gray-900 pt-32 pb-24 px-4 lg:px-8">
       <Script src="https://checkout.razorpay.com/v1/checkout.js" />
       <div className="fixed inset-0 pointer-events-none opacity-[0.02] z-50" />
       
@@ -176,10 +176,10 @@ export default function CheckoutPage() {
           {/* Form Side */}
           <div className="space-y-12">
             <header className="space-y-4">
-              <h1 className="font-serif text-4xl lg:text-5xl italic tracking-tight">Secure Acquisition</h1>
-              <div className="flex items-center gap-4 text-muted-gold/40 text-[10px] uppercase tracking-[0.3em]">
+              <h1 className="font-serif text-4xl lg:text-5xl italic tracking-tight">Secure Checkout</h1>
+              <div className="flex items-center gap-4 text-gray-400 text-[10px] uppercase tracking-[0.3em]">
                 <span>Contact Details</span>
-                <div className="h-[1px] w-12 bg-muted-gold/20" />
+                <div className="h-[1px] w-12 bg-gray-200" />
                 <span>Payment</span>
               </div>
             </header>
@@ -187,38 +187,38 @@ export default function CheckoutPage() {
             <form onSubmit={handlePayment} className="space-y-8">
               <div className="space-y-6">
                 <div className="group relative">
-                  <label className="block text-[10px] font-bold tracking-widest text-muted-gold/40 uppercase mb-2">Full Name</label>
+                  <label className="block text-[10px] font-bold tracking-widest text-gray-500 uppercase mb-2">Full Name</label>
                   <input 
                     type="text" 
                     name="name"
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full bg-transparent border-b border-muted-gold/10 py-3 text-parchment font-serif italic text-lg focus:outline-none focus:border-muted-gold transition-colors placeholder:text-muted-gold/5"
+                    className="w-full bg-transparent border-b border-gray-200 py-3 text-gray-900 font-serif italic text-lg focus:outline-none focus:border-brilliant-green transition-colors placeholder:text-gray-300"
                     placeholder="Enter your name"
                   />
                 </div>
                 <div className="group relative">
-                  <label className="block text-[10px] font-bold tracking-widest text-muted-gold/40 uppercase mb-2">Email Address</label>
+                  <label className="block text-[10px] font-bold tracking-widest text-gray-500 uppercase mb-2">Email Address</label>
                   <input 
                     type="email" 
                     name="email"
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full bg-transparent border-b border-muted-gold/10 py-3 text-parchment font-serif italic text-lg focus:outline-none focus:border-muted-gold transition-colors placeholder:text-muted-gold/5"
+                    className="w-full bg-transparent border-b border-gray-200 py-3 text-gray-900 font-serif italic text-lg focus:outline-none focus:border-brilliant-green transition-colors placeholder:text-gray-300"
                     placeholder="curator@salf.com"
                   />
                 </div>
                 <div className="group relative">
-                  <label className="block text-[10px] font-bold tracking-widest text-muted-gold/40 uppercase mb-2">Phone Number</label>
+                  <label className="block text-[10px] font-bold tracking-widest text-gray-500 uppercase mb-2">Phone Number</label>
                   <input 
                     type="tel" 
                     name="phone"
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full bg-transparent border-b border-muted-gold/10 py-3 text-parchment font-serif italic text-lg focus:outline-none focus:border-muted-gold transition-colors placeholder:text-muted-gold/5"
+                    className="w-full bg-transparent border-b border-gray-200 py-3 text-gray-900 font-serif italic text-lg focus:outline-none focus:border-brilliant-green transition-colors placeholder:text-gray-300"
                     placeholder="+91"
                   />
                 </div>
@@ -228,7 +228,7 @@ export default function CheckoutPage() {
                 <button
                   type="submit"
                   disabled={isProcessing}
-                  className="w-full group relative overflow-hidden bg-muted-gold py-6 text-offblack font-bold uppercase text-[11px] tracking-[0.4em] hover:bg-parchment transition-all duration-500 shadow-2xl disabled:opacity-50 rounded-xl"
+                  className="w-full group relative overflow-hidden bg-brilliant-green py-6 text-white font-bold uppercase text-[11px] tracking-[0.4em] hover:bg-brilliant-green/90 transition-all duration-500 shadow-xl disabled:opacity-50 rounded-xl"
                 >
                   <span className="flex items-center justify-center gap-3">
                     {isProcessing ? "Processing..." : "Initiate Acquisition"}
@@ -237,12 +237,12 @@ export default function CheckoutPage() {
                 </button>
               </div>
 
-              <div className="flex items-center justify-center gap-8 pt-6 border-t border-muted-gold/5">
-                <div className="flex items-center gap-2 text-[9px] uppercase tracking-widest text-muted-gold/30">
+              <div className="flex items-center justify-center gap-8 pt-6 border-t border-gray-100">
+                <div className="flex items-center gap-2 text-[9px] uppercase tracking-widest text-gray-400">
                   <Lock className="w-3 h-3" />
                   SSL Encrypted
                 </div>
-                <div className="flex items-center gap-2 text-[9px] uppercase tracking-widest text-muted-gold/30">
+                <div className="flex items-center gap-2 text-[9px] uppercase tracking-widest text-gray-400">
                   <ShieldCheck className="w-3 h-3" />
                   PCI Compliant
                 </div>
@@ -252,58 +252,58 @@ export default function CheckoutPage() {
 
           {/* Order Summary Side */}
           <div className="lg:sticky lg:top-40 h-fit space-y-8">
-            <div className="bg-muted-gold/[0.02] border border-muted-gold/10 p-8 rounded-xl space-y-8">
-              <h2 className="font-serif text-xl italic text-parchment/80">Acquisition Summary</h2>
+            <div className="bg-gray-50 border border-gray-200 p-8 rounded-xl space-y-8">
+              <h2 className="font-serif text-xl italic text-gray-800">Acquisition Summary</h2>
               
               <div className="space-y-4 max-h-[300px] overflow-y-auto pr-4 custom-scrollbar">
                 {cart.map((item) => (
                   <div key={item.slug} className="flex gap-4">
-                    <div className="relative w-16 h-16 bg-offblack/40 border border-muted-gold/10 shrink-0 overflow-hidden">
+                    <div className="relative w-16 h-16 bg-white border border-gray-200 shrink-0 overflow-hidden">
                       {item.image && (
                         <Image 
                           src={item.image} 
                           alt={item.name}
                           fill
                           sizes="64px"
-                          className="object-cover grayscale opacity-80"
+                          className="object-cover"
                         />
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-[12px] font-serif text-parchment truncate uppercase tracking-wider">{item.name}</p>
-                      <p className="text-[10px] text-muted-gold/40 uppercase tracking-widest">{item.era} Period</p>
+                      <p className="text-[12px] font-serif text-gray-900 truncate uppercase tracking-wider">{item.name}</p>
+                      <p className="text-[10px] text-gray-500 uppercase tracking-widest">{item.era} Period</p>
                       <div className="flex justify-between items-center mt-1">
-                        <span className="text-[10px] text-muted-gold/60">Qty: {item.quantity}</span>
-                        <span className="text-[11px] font-serif">₹{item.price.toLocaleString()}</span>
+                        <span className="text-[10px] text-gray-600">Qty: {item.quantity}</span>
+                        <span className="text-[11px] font-serif text-gray-900">₹{item.price.toLocaleString()}</span>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="space-y-4 pt-6 border-t border-muted-gold/10">
-                <div className="flex justify-between text-[11px] uppercase tracking-[0.2em] text-muted-gold/40">
+              <div className="space-y-4 pt-6 border-t border-gray-200">
+                <div className="flex justify-between text-[11px] uppercase tracking-[0.2em] text-gray-500">
                   <span>Subtotal</span>
                   <span>₹{cartTotal.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between text-[11px] uppercase tracking-[0.2em] text-muted-gold/40">
+                <div className="flex justify-between text-[11px] uppercase tracking-[0.2em] text-gray-500">
                   <span>Shipping</span>
                   <span>Complimentary</span>
                 </div>
-                <div className="flex justify-between items-center pt-4 border-t border-muted-gold/20">
-                  <span className="text-[13px] uppercase tracking-[0.4em] text-parchment font-bold">Total</span>
-                  <span className="text-2xl text-muted-gold font-serif">₹{cartTotal.toLocaleString()}</span>
+                <div className="flex justify-between items-center pt-4 border-t border-gray-200">
+                  <span className="text-[13px] uppercase tracking-[0.4em] text-gray-900 font-bold">Total</span>
+                  <span className="text-2xl text-brilliant-green font-serif">₹{cartTotal.toLocaleString()}</span>
                 </div>
               </div>
             </div>
 
-            <div className="p-6 border border-brilliant-green/20 bg-brilliant-green/[0.02] flex items-start gap-4">
+            <div className="p-6 border border-brilliant-green/20 bg-brilliant-green/[0.05] flex items-start gap-4 rounded-xl">
               <div className="w-10 h-10 rounded-full bg-brilliant-green/10 flex items-center justify-center shrink-0">
                 <CreditCard className="w-5 h-5 text-brilliant-green" />
               </div>
               <div className="space-y-1">
-                <h4 className="text-[11px] font-bold uppercase tracking-widest text-parchment">Razorpay Secure</h4>
-                <p className="text-[10px] text-muted-gold/40 leading-relaxed uppercase tracking-widest">
+                <h4 className="text-[11px] font-bold uppercase tracking-widest text-gray-900">Razorpay Secure</h4>
+                <p className="text-[10px] text-gray-500 leading-relaxed uppercase tracking-widest">
                   Pay securely via UPI, Cards, NetBanking, or Wallets through our encrypted payment gateway.
                 </p>
               </div>

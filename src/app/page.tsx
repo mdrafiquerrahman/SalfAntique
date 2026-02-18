@@ -1,4 +1,5 @@
 import MuseumHero from "../components/MuseumHero";
+import QuickCategories from "../components/QuickCategories";
 import FeaturedEras from "../components/FeaturedEras";
 import NewArrivals from "../components/NewArrivals";
 import Assurance from "../components/Assurance";
@@ -8,6 +9,7 @@ import FAQ from "../components/FAQ";
 export default function Home() {
   return (
     <div className="min-h-screen bg-neutral-bg">
+      <QuickCategories />
       <MuseumHero />
       <ShopByCategory />
       <NewArrivals />

@@ -32,9 +32,24 @@ export default function GalleryGrid({ era, category, sort }: GalleryGridProps) {
   }
 
   if (category) {
-    filteredProducts = filteredProducts.filter(
-      p => p.category.toLowerCase() === category.toLowerCase()
-    );
+    const catLower = category.toLowerCase();
+    
+    filteredProducts = filteredProducts.filter(p => {
+      const nameLower = p.name.toLowerCase();
+      const storyLower = p.story.toLowerCase();
+      const pCatLower = p.category.toLowerCase();
+
+      if (catLower === 'antique') return true;
+      if (catLower === 'choker') return nameLower.includes('choker') || storyLower.includes('choker');
+      if (catLower === 'long-necklace') return nameLower.includes('long') || nameLower.includes('haar') || storyLower.includes('long');
+      if (catLower === 'short-necklace') return pCatLower === 'necklace' && !nameLower.includes('long') && !nameLower.includes('haar') && !nameLower.includes('choker') && !nameLower.includes('mala') && !nameLower.includes('panel');
+      if (catLower === 'pendant') return pCatLower === 'pendants' || nameLower.includes('pendant');
+      if (catLower === 'mangalsutra') return nameLower.includes('mangalsutra') || storyLower.includes('mangalsutra');
+      if (catLower === 'waistbands') return nameLower.includes('waist') || nameLower.includes('kamarband');
+      if (catLower === 'hair-accessories') return nameLower.includes('hair') || nameLower.includes('tikka') || nameLower.includes('jhoomar') || nameLower.includes('matha patti');
+      
+      return pCatLower === catLower;
+    });
   }
 
   if (sort) {

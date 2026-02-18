@@ -29,13 +29,17 @@ export default function NavBar() {
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
 
   const categories = {
-    jewelry: [
-      { name: "All Jewelry", href: "/jewelry" },
-      { name: "Necklaces", href: "/jewelry?category=necklace" },
-      { name: "Earrings", href: "/jewelry?category=earrings" },
-      { name: "Bangles & Bracelets", href: "/jewelry?category=bangles" },
+    categories: [
+      { name: "Necklaces Sets", href: "/jewelry?category=necklace" },
+      { name: "Choker Sets", href: "/jewelry?category=choker" },
+      { name: "Pendant Sets", href: "/jewelry?category=pendant" },
+      { name: "Earring Designs", href: "/jewelry?category=earrings" },
+      { name: "Bangles and Bracelets", href: "/jewelry?category=bangles" },
+      { name: "Long Necklace Sets", href: "/jewelry?category=long-necklace" },
       { name: "Rings", href: "/jewelry?category=rings" },
-      { name: "Pendants", href: "/jewelry?category=pendants" },
+      { name: "Hair Accessories", href: "/jewelry?category=hair-accessories" },
+      { name: "Waistbands", href: "/jewelry?category=waistbands" },
+      { name: "Mangalsutra Collection", href: "/jewelry?category=mangalsutra" },
     ],
     collections: [
       { name: "All Collections", href: "/collections" },
@@ -44,12 +48,10 @@ export default function NavBar() {
       { name: "Art Deco", href: "/jewelry?era=art-deco" },
       { name: "Bridal", href: "/jewelry?category=bridal" },
     ],
-    gemstones: [
-      { name: "All Gemstones", href: "/gemstones" },
-      { name: "Diamonds", href: "/diamonds" },
-      { name: "Emeralds", href: "/gemstones?type=emerald" },
-      { name: "Rubies", href: "/gemstones?type=ruby" },
-      { name: "Sapphires", href: "/gemstones?type=sapphire" },
+    bridal: [
+      { name: "All Bridal", href: "/jewelry?category=bridal" },
+      { name: "Wedding Sets", href: "/jewelry?category=wedding-sets" },
+      { name: "Maang Tikka", href: "/jewelry?category=maang-tikka" },
     ]
   };
 
@@ -60,128 +62,63 @@ export default function NavBar() {
     >
       {/* Main Header */}
       <header className="border-b border-gray-100">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          {/* Mobile-only Top Row */}
-          <div className="lg:hidden flex items-center justify-between py-3">
+        <div className="mx-auto max-w-[1920px] px-4 lg:px-12">
+          {/* Mobile Layout */}
+          <div className="flex lg:hidden items-center justify-between h-16">
+            {/* Hamburger Menu */}
             <button 
-              onClick={() => {
-                setIsMobileMenuOpen(!isMobileMenuOpen);
-                setIsSearchOpen(false);
-              }}
-              className="p-1 hover:text-brilliant-green transition-colors text-gray-500"
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="p-2 -ml-2 text-gray-800 hover:text-brilliant-green transition-colors"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isMobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16" />
-                )}
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
 
+            {/* Logo */}
             <Link href="/" className="flex items-center gap-2">
-              <div className="relative w-7 h-7 overflow-hidden rounded-full border border-gray-100">
-                <Image 
-                  src="/logo.png" 
-                  alt="Salf Antqe Logo" 
-                  fill 
-                  sizes="28px"
-                  className="object-cover" 
+              <span className="text-xl font-serif tracking-[0.15em] text-gray-900 uppercase">Salf</span>
+              <div className="relative w-8 h-8 overflow-hidden rounded-full border border-gray-100">
+                <Image
+                  src="/logo.png"
+                  alt="Logo"
+                  fill
+                  sizes="32px"
+                  className="object-cover"
                 />
               </div>
-              <span className="font-serif text-[13px] tracking-[0.15em] text-gray-900 uppercase whitespace-nowrap">Salf Antqe</span>
+              <span className="text-xl font-serif tracking-[0.15em] text-gray-900 uppercase">Antqe</span>
             </Link>
 
-            <div className="flex items-center gap-3">
-              <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="text-gray-500">
+            {/* Icons */}
+            <div className="flex items-center gap-4">
+              <button 
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                className="text-gray-800 hover:text-brilliant-green transition-colors"
+              >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </button>
-              <button onClick={() => setIsCartOpen(true)} className="text-gray-500 relative">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                </svg>
-                {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-brilliant-green text-white text-[8px] font-bold px-1 rounded-full min-w-[12px] h-[12px] flex items-center justify-center">
-                    {cartCount}
-                  </span>
-                )}
-              </button>
-            </div>
-          </div>
-
-          {/* Desktop Logo & Utilities Row */}
-          <div className="hidden lg:grid grid-cols-3 items-center py-3">
-            <div className="flex items-center gap-6 text-[10px] font-medium text-gray-400 uppercase tracking-widest">
-              <Link href="/stores" className="hover:text-brilliant-green transition-colors">Our Office</Link>
-              <Link href="/appointment" className="hover:text-brilliant-green transition-colors">Support</Link>
-            </div>
-
-            <div className="flex justify-center">
-              <Link href="/" prefetch={false} className="flex items-center gap-5 group">
-                <span className="text-3xl lg:text-4xl font-serif tracking-[0.2em] text-gray-900 uppercase group-hover:text-brilliant-green transition-colors duration-500">
-                  Salf
-                </span>
-                <div className="relative w-16 h-16 overflow-hidden rounded-full border border-gray-100 group-hover:border-brilliant-green transition-all duration-500 shadow-sm group-hover:shadow-md">
-                  <Image
-                    src="/logo.png"
-                    alt="Salf Antqe Logo"
-                    fill
-                    sizes="64px"
-                    className="object-cover"
-                  />
-                </div>
-                <span className="text-3xl lg:text-4xl font-serif tracking-[0.2em] text-gray-900 uppercase group-hover:text-brilliant-green transition-colors duration-500">
-                  Antqe
-                </span>
-              </Link>
-            </div>
-
-            <div className="flex items-center justify-end gap-6">
-              <div className="relative flex items-center">
-                {isSearchOpen && (
-                  <form onSubmit={handleSearch} className="absolute right-full mr-4">
-                    <input 
-                      type="text" 
-                      placeholder="Search..." 
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-32 lg:w-40 border-b border-gray-200 bg-transparent py-1 px-2 text-[11px] focus:outline-none focus:border-brilliant-green transition-all"
-                      autoFocus
-                    />
-                  </form>
-                )}
-                <button 
-                  onClick={() => setIsSearchOpen(!isSearchOpen)}
-                  className={`text-gray-600 transition-colors ${isSearchOpen ? 'text-brilliant-green' : 'hover:text-brilliant-green'}`}
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </button>
-              </div>
-
-              <Link href="/wishlist" className="relative text-gray-600 hover:text-brilliant-green transition-colors">
+              <Link href="/wishlist" className="relative text-gray-800 hover:text-brilliant-green transition-colors">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
                 {wishlistCount > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full min-w-[14px] flex items-center justify-center">
+                  <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full min-w-[16px] flex items-center justify-center">
                     {wishlistCount}
                   </span>
                 )}
               </Link>
-
               <button 
                 onClick={() => setIsCartOpen(true)}
-                className="relative text-gray-600 hover:text-brilliant-green transition-colors"
+                className="relative text-gray-800 hover:text-brilliant-green transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
                 {cartCount > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 bg-brilliant-green text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full min-w-[14px] flex items-center justify-center">
+                  <span className="absolute -top-1.5 -right-1.5 bg-brilliant-green text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full min-w-[16px] flex items-center justify-center">
                     {cartCount}
                   </span>
                 )}
@@ -189,78 +126,117 @@ export default function NavBar() {
             </div>
           </div>
 
-          {/* Mobile Search Dropdown */}
-          <AnimatePresence>
-            {isSearchOpen && (
-              <motion.div 
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="lg:hidden overflow-hidden bg-gray-50 border-t border-gray-100"
-              >
-                <div className="px-4 py-3">
-                  <form onSubmit={handleSearch} className="flex items-center gap-3 bg-white px-3 py-2 rounded-xl border border-gray-200">
-                    <button type="submit" className="text-gray-400">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                      </svg>
-                    </button>
-                    <input 
-                      type="text" 
-                      placeholder="Search..." 
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="flex-1 bg-transparent text-[13px] focus:outline-none"
-                      autoFocus
+          {/* Desktop Layout */}
+          <div className="hidden lg:flex flex-col w-full py-2">
+            
+            {/* Top Row: Utility, Logo, Icons */}
+            <div className="flex justify-between items-center h-16 relative">
+              
+              {/* Left: Utility Links */}
+              <div className="flex gap-6 text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase">
+                <Link href="/office" className="hover:text-brilliant-green transition-colors">Our Office</Link>
+                <Link href="/support" className="hover:text-brilliant-green transition-colors">Support</Link>
+              </div>
+
+              {/* Center: Split Logo */}
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                <Link href="/" className="flex items-center gap-4 group">
+                  <span className="text-2xl font-serif tracking-[0.15em] text-gray-900 uppercase group-hover:text-brilliant-green transition-colors duration-500">
+                    Salf
+                  </span>
+                  <div className="relative w-14 h-14 overflow-hidden rounded-full border border-gray-100 group-hover:border-brilliant-green transition-all duration-500">
+                    <Image
+                      src="/logo.png"
+                      alt="Salf Antqe Logo"
+                      fill
+                      sizes="56px"
+                      className="object-cover"
                     />
-                  </form>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                  </div>
+                  <span className="text-2xl font-serif tracking-[0.15em] text-gray-900 uppercase group-hover:text-brilliant-green transition-colors duration-500">
+                    Antqe
+                  </span>
+                </Link>
+              </div>
 
-          {/* Mobile Menu Content */}
-          <AnimatePresence>
-            {isMobileMenuOpen && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="lg:hidden overflow-hidden border-t border-gray-50"
+              {/* Right: Icons */}
+              <div className="flex items-center justify-end gap-6">
+                <div className="relative flex items-center">
+                  {isSearchOpen && (
+                    <form onSubmit={handleSearch} className="absolute right-full mr-4">
+                      <input 
+                        type="text" 
+                        placeholder="Search..." 
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-40 border-b border-gray-200 bg-transparent py-1 px-2 text-[13px] focus:outline-none focus:border-brilliant-green transition-all"
+                        autoFocus
+                      />
+                    </form>
+                  )}
+                  <button 
+                    onClick={() => setIsSearchOpen(!isSearchOpen)}
+                    className={`text-gray-800 transition-colors ${isSearchOpen ? 'text-brilliant-green' : 'hover:text-brilliant-green'}`}
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                  </button>
+                </div>
+
+                <Link href="/wishlist" className="relative text-gray-800 hover:text-brilliant-green transition-colors">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                  {wishlistCount > 0 && (
+                    <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full min-w-[16px] flex items-center justify-center">
+                      {wishlistCount}
+                    </span>
+                  )}
+                </Link>
+
+                <button 
+                  onClick={() => setIsCartOpen(true)}
+                  className="relative text-gray-800 hover:text-brilliant-green transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                  </svg>
+                  {cartCount > 0 && (
+                    <span className="absolute -top-1.5 -right-1.5 bg-brilliant-green text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full min-w-[16px] flex items-center justify-center">
+                      {cartCount}
+                    </span>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Bottom Row: Navigation */}
+            <nav className="flex justify-center gap-12 mt-2 text-[11px] font-bold tracking-[0.15em] text-gray-600 uppercase">
+              <Link href="/jewelry?category=gemstones" className="hover:text-brilliant-green transition-colors whitespace-nowrap">Gemstones</Link>
+              
+              <div 
+                className="relative group cursor-pointer"
+                onMouseEnter={() => setActiveMegaMenu('categories')}
               >
-                <div className="flex flex-col py-4 px-2 space-y-4 text-[11px] font-medium text-gray-500 uppercase tracking-widest">
-                  <Link href="/stores" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-2">Our Office</Link>
-                  <Link href="/appointment" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-2">Support</Link>
-                  <Link href="/collections" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-2">Collections</Link>
-                  <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-2">Our Story</Link>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                <span className="flex items-center gap-1 hover:text-brilliant-green transition-colors whitespace-nowrap">
+                  Jewelry
+                </span>
+              </div>
 
-          {/* Bottom Row: Navigation */}
-          <nav className="hidden lg:flex justify-center gap-8 lg:gap-12 pb-4 text-[13px] font-semibold tracking-widest text-gray-700 uppercase">
-            <div 
-              className="relative group"
-              onMouseEnter={() => setActiveMegaMenu('gemstones')}
-            >
-              <Link href="/gemstones" prefetch={false} className="hover:text-brilliant-green border-b-2 border-transparent hover:border-brilliant-green pb-1 transition-all whitespace-nowrap">Gemstones</Link>
-            </div>
-            <div 
-              className="relative group"
-              onMouseEnter={() => setActiveMegaMenu('jewelry')}
-            >
-              <Link href="/jewelry" prefetch={false} className="hover:text-brilliant-green border-b-2 border-transparent hover:border-brilliant-green pb-1 transition-all whitespace-nowrap">Jewelry</Link>
-            </div>
-            <div 
-              className="relative group"
-              onMouseEnter={() => setActiveMegaMenu('collections')}
-            >
-              <Link href="/collections" prefetch={false} className="hover:text-brilliant-green border-b-2 border-transparent hover:border-brilliant-green pb-1 transition-all whitespace-nowrap">Collections</Link>
-            </div>
-            <Link href="/gifts" prefetch={false} className="hover:text-brilliant-green border-b-2 border-transparent hover:border-brilliant-green pb-1 transition-all whitespace-nowrap">Gifts</Link>
-            <Link href="/about" prefetch={false} className="hover:text-brilliant-green border-b-2 border-transparent hover:border-brilliant-green pb-1 transition-all whitespace-nowrap">About</Link>
-          </nav>
+              <div 
+                className="relative group cursor-pointer"
+                onMouseEnter={() => setActiveMegaMenu('collections')}
+              >
+                <span className="flex items-center gap-1 hover:text-brilliant-green transition-colors whitespace-nowrap">
+                  Collections
+                </span>
+              </div>
+
+              <Link href="/gifts" className="hover:text-brilliant-green transition-colors whitespace-nowrap">Gifts</Link>
+              <Link href="/about" className="hover:text-brilliant-green transition-colors whitespace-nowrap">About</Link>
+            </nav>
+          </div>
         </div>
 
         {/* Mega Menu Dropdown */}
@@ -342,6 +318,97 @@ export default function NavBar() {
           )}
         </AnimatePresence>
       </header>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+            />
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed inset-y-0 left-0 w-[300px] bg-white z-50 lg:hidden overflow-y-auto shadow-xl"
+            >
+              <div className="p-6 space-y-8">
+                <div className="flex items-center justify-between">
+                  <span className="text-xl font-serif tracking-widest uppercase">Menu</span>
+                  <button 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="p-2 -mr-2 text-gray-500 hover:text-red-500 transition-colors"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+
+                <nav className="flex flex-col gap-6">
+                  <Link 
+                    href="/jewelry?category=gemstones" 
+                    className="text-lg font-medium text-gray-800 hover:text-brilliant-green transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Gemstones
+                  </Link>
+                  <Link 
+                    href="/jewelry" 
+                    className="text-lg font-medium text-gray-800 hover:text-brilliant-green transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Jewelry
+                  </Link>
+                  <Link 
+                    href="/collections" 
+                    className="text-lg font-medium text-gray-800 hover:text-brilliant-green transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Collections
+                  </Link>
+                  <Link 
+                    href="/gifts" 
+                    className="text-lg font-medium text-gray-800 hover:text-brilliant-green transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Gifts
+                  </Link>
+                  <Link 
+                    href="/about" 
+                    className="text-lg font-medium text-gray-800 hover:text-brilliant-green transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    About
+                  </Link>
+                  
+                  <div className="pt-6 border-t border-gray-100 flex flex-col gap-4">
+                    <Link 
+                      href="/office" 
+                      className="text-sm font-bold tracking-widest text-gray-400 uppercase hover:text-brilliant-green transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Our Office
+                    </Link>
+                    <Link 
+                      href="/support" 
+                      className="text-sm font-bold tracking-widest text-gray-400 uppercase hover:text-brilliant-green transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Support
+                    </Link>
+                  </div>
+                </nav>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
