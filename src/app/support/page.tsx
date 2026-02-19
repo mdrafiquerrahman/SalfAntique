@@ -59,7 +59,7 @@ const HELP_CATEGORIES = [
 
 export default function HelpPage() {
   return (
-    <main className="min-h-screen bg-offblack py-20 lg:py-32 selection:bg-muted-gold/30">
+    <main className="min-h-screen bg-[#fdfdfc] py-20 lg:py-32 selection:bg-brilliant-green/30">
       <div className="mx-auto max-w-7xl px-8 lg:px-20">
         <div className="max-w-3xl mb-24">
           <motion.div
@@ -68,11 +68,11 @@ export default function HelpPage() {
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            <span className="text-muted-gold/40 text-[10px] uppercase tracking-[0.5em] font-sans">Client Services</span>
-            <h1 className="font-serif text-5xl md:text-7xl text-parchment leading-none tracking-tighter">
-              How can we <br /><span className="italic text-muted-gold/80">assist you?</span>
+            <span className="text-gray-400 text-[10px] uppercase tracking-[0.5em] font-sans">Client Services</span>
+            <h1 className="font-serif text-5xl md:text-7xl text-gray-900 leading-none tracking-tighter">
+              How can we <br /><span className="italic text-brilliant-green">assist you?</span>
             </h1>
-            <p className="text-parchment/50 font-sans text-lg lg:text-xl max-w-xl italic leading-relaxed">
+            <p className="text-gray-500 font-sans text-lg lg:text-xl max-w-xl italic leading-relaxed">
               Explore our guide to shipping, private acquisitions, and the preservation of historical treasures.
             </p>
           </motion.div>
@@ -89,17 +89,17 @@ export default function HelpPage() {
               className="space-y-12"
             >
               <div className="flex items-center gap-6">
-                <h2 className="font-serif text-muted-gold/60 text-xs uppercase tracking-[0.4em] whitespace-nowrap">{category.title}</h2>
-                <div className="h-[1px] w-full bg-muted-gold/10" />
+                <h2 className="font-serif text-gray-400 text-xs uppercase tracking-[0.4em] whitespace-nowrap">{category.title}</h2>
+                <div className="h-[1px] w-full bg-gray-200" />
               </div>
               
               <div className="space-y-10">
                 {category.items.map((item, i) => (
                   <div key={i} className="group space-y-4">
-                    <h3 className="font-serif text-parchment text-xl lg:text-2xl tracking-tight group-hover:text-muted-gold transition-colors">
+                    <h3 className="font-serif text-gray-900 text-xl lg:text-2xl tracking-tight group-hover:text-brilliant-green transition-colors">
                       {item.q}
                     </h3>
-                    <p className="font-sans text-parchment/40 text-sm leading-relaxed max-w-xl">
+                    <p className="font-sans text-gray-500 text-sm leading-relaxed max-w-xl">
                       {item.a}
                     </p>
                   </div>
@@ -113,11 +113,11 @@ export default function HelpPage() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-40 pt-20 border-t border-muted-gold/5 text-center space-y-12"
+          className="mt-40 pt-20 border-t border-gray-200 text-center space-y-12"
         >
           <div className="space-y-4">
-            <h2 className="font-serif text-3xl text-parchment tracking-tight">Still have questions?</h2>
-            <p className="text-muted-gold/40 text-sm uppercase tracking-widest">Our curators are available for immediate consultation</p>
+            <h2 className="font-serif text-3xl text-gray-900 tracking-tight">Still have questions?</h2>
+            <p className="text-gray-400 text-sm uppercase tracking-widest">Our curators are available for immediate consultation</p>
           </div>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -131,7 +131,7 @@ export default function HelpPage() {
             </a>
             <Link 
               href="/appointment"
-              className="px-10 py-4 rounded-2xl border border-muted-gold/20 text-muted-gold text-[12px] font-bold uppercase tracking-widest hover:bg-muted-gold/5 transition-all"
+              className="px-10 py-4 rounded-2xl border border-brilliant-green text-brilliant-green text-[12px] font-bold uppercase tracking-widest hover:bg-brilliant-green hover:text-white transition-all"
             >
               Request Appointment
             </Link>
