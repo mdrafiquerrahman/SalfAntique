@@ -41,7 +41,7 @@ export default function RootLayout({
           <WishlistProvider>
             <NavBar />
             <CartDrawer />
-            <main className="pt-[64px] lg:pt-[130px]">
+            <main className="pt-[56px] lg:pt-[130px]">
               <TransitionLayout>{children}</TransitionLayout>
             </main>
             <ContactFooter />
