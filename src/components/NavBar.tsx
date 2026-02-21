@@ -216,7 +216,7 @@ export default function NavBar() {
 
             {/* Bottom Row: Navigation */}
             <nav className="flex justify-center gap-12 mt-2 text-[11px] font-bold tracking-[0.15em] text-gray-600 uppercase">
-              <Link href="/jewelry?category=gemstones" className="hover:text-brilliant-green transition-colors whitespace-nowrap">Gemstones</Link>
+              <Link href="/" className="hover:text-brilliant-green transition-colors whitespace-nowrap">Home</Link>
               
               <div 
                 className="relative group cursor-pointer"
@@ -385,11 +385,11 @@ export default function NavBar() {
 
                 <nav className="flex flex-col gap-6">
                   <Link 
-                    href="/jewelry?category=gemstones" 
+                    href="/" 
                     className="text-lg font-medium text-gray-800 hover:text-brilliant-green transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Gemstones
+                    Home
                   </Link>
                   <Link 
                     href="/jewelry" 

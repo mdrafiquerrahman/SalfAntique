@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import type { Product } from "../data/products";
 import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
-import { Heart, Search, ShoppingCart } from "lucide-react";
+import { Heart, Search, ShoppingCart, Truck } from "lucide-react";
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addToCart, setIsCartOpen } = useCart();
@@ -43,8 +43,9 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className="relative aspect-square overflow-hidden rounded-2xl bg-[#f9f9f9] border border-gray-100/50 transition-all duration-300">
         {/* Ready to Ship Badge */}
         {product.isReadyToShip && (
-          <div className="absolute top-3 left-3 z-10">
-            <span className="bg-[#5d735d] text-white text-[9px] px-2 py-1 rounded font-medium tracking-wide">
+          <div className="absolute top-0 left-0 z-10">
+            <span className="flex items-center gap-1 bg-[#5d735d] text-white text-[9px] px-2.5 py-1 rounded-br-lg font-semibold tracking-wide shadow-sm">
+              <Truck className="w-2.5 h-2.5" strokeWidth={2.5} />
               Ready to Ship
             </span>
           </div>
@@ -74,18 +75,6 @@ export default function ProductCard({ product }: { product: Product }) {
 
         {/* Desktop Quick Actions */}
         <div className="absolute inset-0 z-10 hidden md:block opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
-          {/* Top Right Search */}
-          <button 
-            className="absolute top-4 right-4 p-2.5 rounded-xl bg-white/90 backdrop-blur-sm shadow-sm pointer-events-auto hover:bg-white hover:scale-110 transition-all duration-300 group/search"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              router.push(`/products/${product.slug}`);
-            }}
-          >
-            <Search className="w-4 h-4 text-gray-700 group-hover/search:text-gray-900" />
-          </button>
-          
           {/* Bottom Full-width Add to cart - Slides up */}
           <div className="absolute bottom-4 left-4 right-4 translate-y-full group-hover:translate-y-0 transition-all duration-500 pointer-events-auto">
             <button 
@@ -97,39 +86,42 @@ export default function ProductCard({ product }: { product: Product }) {
           </div>
         </div>
 
-        {/* Mobile Action Icons */}
-        <div className="absolute top-3 right-3 flex md:hidden flex-col gap-2 z-10">
+        {/* Bottom Right Actions (Cart, Heart & Search) */}
+        <div className="absolute bottom-3 right-3 z-20 flex flex-col items-center gap-1.5">
+          {/* Mobile Cart Button */}
           <button 
-            className="p-2 rounded-xl bg-white/90 backdrop-blur-sm shadow-sm"
+            className="md:hidden p-1.5 rounded-full bg-white/90 backdrop-blur-sm shadow-sm hover:bg-white transition-all hover:scale-110"
+            onClick={handleAddToCart}
+          >
+            <ShoppingCart className="w-3.5 h-3.5 text-gray-700" />
+          </button>
+
+          {/* Search Button */}
+          <button 
+            className="p-1.5 rounded-full bg-white/90 backdrop-blur-sm shadow-sm hover:bg-white transition-all hover:scale-110"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               router.push(`/products/${product.slug}`);
             }}
           >
-            <Search className="w-4 h-4 text-gray-700" />
+            <Search className="w-3.5 h-3.5 text-gray-700 hover:text-gray-900" />
           </button>
+
+          {/* Heart Icon */}
           <button 
-            className="p-2 rounded-xl bg-white/90 backdrop-blur-sm shadow-sm"
-            onClick={handleAddToCart}
+            onClick={toggleWishlist}
+            className="p-1.5 rounded-full bg-white/90 backdrop-blur-sm shadow-sm hover:bg-white transition-all hover:scale-110"
           >
-            <ShoppingCart className="w-4 h-4 text-gray-700" />
+            <Heart 
+              className={`w-3.5 h-3.5 transition-all duration-300 stroke-[1.5px] ${
+                isFavorite 
+                  ? "text-red-500 fill-red-500 scale-110" 
+                  : "text-gray-700 hover:text-red-500"
+              }`} 
+            />
           </button>
         </div>
-
-        {/* Heart Icon */}
-        <button 
-          onClick={toggleWishlist}
-          className="absolute bottom-3 left-3 z-10 p-1 transition-all"
-        >
-          <Heart 
-            className={`w-5 h-5 transition-all duration-300 stroke-[1.5px] ${
-              isFavorite 
-                ? "text-red-500 fill-red-500 scale-110" 
-                : "text-gray-700 hover:text-red-500"
-            }`} 
-          />
-        </button>
       </div>
 
       {/* Product Info */}

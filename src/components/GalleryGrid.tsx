@@ -32,17 +32,22 @@ export default function GalleryGrid({ era, category, sort }: GalleryGridProps) {
   }
 
   if (category) {
-    const catLower = category.toLowerCase();
+    const catLower = category.toLowerCase().trim();
     
     filteredProducts = filteredProducts.filter(p => {
+      if (!p.category) return false;
       const nameLower = p.name.toLowerCase();
       const storyLower = p.story.toLowerCase();
       const pCatLower = p.category.toLowerCase();
 
-      if (catLower === 'antique') return true;
+      // Antique category filtering: show necklaces, pendants, and bracelets
+      if (catLower === 'antique') {
+        return pCatLower === 'necklace' || pCatLower === 'pendants' || pCatLower === 'bracelets';
+      }
+      
       if (catLower === 'choker') return nameLower.includes('choker') || storyLower.includes('choker');
-      if (catLower === 'long-necklace') return nameLower.includes('long') || nameLower.includes('haar') || storyLower.includes('long');
-      if (catLower === 'short-necklace') return pCatLower === 'necklace' && !nameLower.includes('long') && !nameLower.includes('haar') && !nameLower.includes('choker') && !nameLower.includes('mala') && !nameLower.includes('panel');
+      if (catLower === 'long-necklace') return nameLower.includes('long') || nameLower.includes('haar') || nameLower.includes('mala') || storyLower.includes('long');
+      if (catLower === 'short-necklace') return pCatLower === 'necklace' && !nameLower.includes('long') && !nameLower.includes('haar') && !nameLower.includes('choker') && !nameLower.includes('mala');
       if (catLower === 'pendant') return pCatLower === 'pendants' || nameLower.includes('pendant');
       if (catLower === 'mangalsutra') return nameLower.includes('mangalsutra') || storyLower.includes('mangalsutra');
       if (catLower === 'waistbands') return nameLower.includes('waist') || nameLower.includes('kamarband');

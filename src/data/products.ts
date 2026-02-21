@@ -392,5 +392,89 @@ export const products: Product[] = [
       origin: "India"
     },
     isReadyToShip: true
+  },
+  {
+    slug: "tribal-black-gold-spike-necklace",
+    name: "Tribal Black Bead & Gold Spike Necklace",
+    category: "necklace",
+    era: "Retro",
+    price: 1850,
+    currency: "INR",
+    story: "A bold statement piece featuring rows of black beads accented with striking gold-tone spikes, blending modern edge with tribal aesthetics.",
+    gemstones: [],
+    image: "/black-gold-spikes-necklace.jpg",
+    secondaryImages: [],
+    hallmarkImage: "",
+    timeline: [],
+    specs: {
+      metal: "Brass & Beads",
+      weight: "120g",
+      condition: "New Antique Style",
+      origin: "India"
+    },
+    isReadyToShip: true
+  },
+  {
+    slug: "gold-beads-cluster-necklace",
+    name: "Golden Cluster Bead Necklace",
+    category: "choker",
+    era: "Victorian",
+    price: 2200,
+    currency: "INR",
+    story: "Lustrous gold-tone beads clustered together to form a rich, textured collar that sits elegantly on the neckline.",
+    gemstones: [],
+    image: "/gold-beads-cluster-necklace.jpg",
+    secondaryImages: [],
+    hallmarkImage: "",
+    timeline: [],
+    specs: {
+      metal: "Gold Tone Alloy",
+      weight: "150g",
+      condition: "New Antique Style",
+      origin: "India"
+    },
+    isReadyToShip: true
+  },
+  {
+    slug: "tribal-black-red-beads-necklace",
+    name: "Monochrome & Red Tribal Layered Necklace",
+    category: "long-necklace",
+    era: "Art Deco",
+    price: 1950,
+    currency: "INR",
+    story: "A multi-strand necklace featuring a striking pattern of black and white beads with vibrant red accents, perfect for a bohemian look.",
+    gemstones: [],
+    image: "/tribal-black-red-beads-necklace.jpg",
+    secondaryImages: [],
+    hallmarkImage: "",
+    timeline: [],
+    specs: {
+      metal: "Beads & Alloy",
+      weight: "110g",
+      condition: "New Antique Style",
+      origin: "India"
+    },
+    isReadyToShip: true
+  },
+  {
+    slug: "antique-bronze-panel-necklace",
+    name: "Antique Bronze Panel Choker",
+    category: "necklace",
+    era: "Retro",
+    price: 2400,
+    currency: "INR",
+    story: "A structured choker made of textured bronze panels, exuding an ancient, warrior-queen aesthetic with intricate detailing.",
+    gemstones: [],
+    image: "/antique-bronze-panel-necklace.jpg",
+    secondaryImages: [],
+    hallmarkImage: "",
+    timeline: [],
+    specs: {
+      metal: "Bronze Tone",
+      weight: "180g",
+      condition: "New Antique Style",
+      origin: "India"
+    },
+    isReadyToShip: true
   }
 ];
