@@ -1,6 +1,5 @@
 import MuseumHero from "../components/MuseumHero";
 import QuickCategories from "../components/QuickCategories";
-import FeaturedEras from "../components/FeaturedEras";
 import NewArrivals from "../components/NewArrivals";
 import Assurance from "../components/Assurance";
 import ShopByCategory from "../components/ShopByCategory";

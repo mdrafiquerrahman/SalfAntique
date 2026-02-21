@@ -24,8 +24,18 @@ export async function POST(request: Request) {
     const isAuthentic = expectedSignature === razorpay_signature;
 
     if (isAuthentic) {
-    // Send confirmation email
-    const apiKey = process.env.RESEND_API_KEY;
+      // Generate items HTML separately to avoid parsing issues and handle types
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const itemsHtml = items.map((item: any) => `
+        <tr style="border-bottom: 1px solid rgba(197, 160, 89, 0.05);">
+          <td style="padding: 10px 0; font-size: 14px;">${item.name}</td>
+          <td style="text-align: right; padding: 10px 0; font-size: 14px;">${item.quantity}</td>
+          <td style="text-align: right; padding: 10px 0; font-size: 14px;">₹${item.price.toLocaleString()}</td>
+        </tr>
+      `).join('');
+
+      // Send confirmation email
+      const apiKey = process.env.RESEND_API_KEY;
     if (apiKey) {
       try {
         console.log("Attempting to send confirmation email to customer:", customerDetails.email);
@@ -52,13 +62,7 @@ export async function POST(request: Request) {
                       </tr>
                     </thead>
                     <tbody>
-                      ${items.map((item: any) => `
-                        <tr style="border-bottom: 1px solid rgba(197, 160, 89, 0.05);">
-                          <td style="padding: 10px 0; font-size: 14px;">${item.name}</td>
-                          <td style="text-align: right; padding: 10px 0; font-size: 14px;">${item.quantity}</td>
-                          <td style="text-align: right; padding: 10px 0; font-size: 14px;">₹${item.price.toLocaleString()}</td>
-                        </tr>
-                      `).join('')}
+                      ${itemsHtml}
                     </tbody>
                     <tfoot>
                       <tr>

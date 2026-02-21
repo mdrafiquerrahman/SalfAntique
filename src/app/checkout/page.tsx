@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useCart } from "../../context/CartContext";
 import Script from "next/script";
 import Image from "next/image";
@@ -34,7 +34,7 @@ export default function CheckoutPage() {
         throw new Error(data.details || data.error || "Failed to create order");
       }
       return data;
-    } catch (error: any) {
+    } catch (error) {
       console.error("Order creation fetch failed:", error);
       throw error;
     }
@@ -56,6 +56,7 @@ export default function CheckoutPage() {
         name: "Salf Antique Gallery",
         description: "Antique Jewelry Acquisition",
         order_id: order.id,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         handler: async function (response: any) {
           try {
             // Verify payment
@@ -103,16 +104,19 @@ export default function CheckoutPage() {
         },
       };
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (!(window as any).Razorpay) {
         throw new Error("Razorpay SDK not loaded. Please check your internet connection.");
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const rzp = new (window as any).Razorpay(options);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       rzp.on("payment.failed", function (response: any) {
         alert("Payment failed: " + response.error.description);
       });
       rzp.open();
-    } catch (error: any) {
+    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       console.error("Payment initiation failed:", error);
       alert(error.message || "Failed to initiate payment. Please try again.");
     } finally {

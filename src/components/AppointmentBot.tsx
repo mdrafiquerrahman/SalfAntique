@@ -42,6 +42,7 @@ export default function AppointmentBot() {
 
   useEffect(() => {
     // Listen for custom events to open the bot
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleOpenBot = (e: any) => {
       setIsOpen(true);
       if (e.detail?.message) {
@@ -183,6 +184,7 @@ export default function AppointmentBot() {
         throw new Error("Submission failed");
       }
     } catch (error) {
+      console.error("Failed to send appointment request:", error);
       setMessages((prev) => [
         ...prev,
         {
@@ -231,6 +233,7 @@ export default function AppointmentBot() {
             <div className="flex items-center justify-between bg-white px-6 py-5 border-b border-gray-100">
               <div className="flex items-center gap-4">
                 <div className="relative h-10 w-10 rounded-full border border-muted-gold/20 p-1 bg-gray-50">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/logo.png" alt="Logo" className="h-full w-full object-contain" />
                   <div className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-white bg-green-500" />
                 </div>

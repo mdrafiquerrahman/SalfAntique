@@ -31,15 +31,16 @@ export async function POST(request: Request) {
     console.log("Razorpay order created successfully:", order.id);
 
     return NextResponse.json(order);
-  } catch (error: any) {
+  } catch (error) {
+    const err = error as any;
     console.error("Razorpay order creation failed detailed:", {
-      message: error.message,
-      description: error.description,
-      code: error.code,
-      metadata: error.metadata
+      message: err.message,
+      description: err.description,
+      code: err.code,
+      metadata: err.metadata
     });
     return NextResponse.json(
-      { error: "Failed to create order", details: error.message },
+      { error: err.message || "Failed to create order" },
       { status: 500 }
     );
   }

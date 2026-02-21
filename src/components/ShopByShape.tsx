@@ -24,9 +24,9 @@ export default function ShopByShape() {
         </h2>
         
         <div className="mt-12 flex flex-wrap justify-center gap-8 lg:gap-12">
-          {shapes.map((shape, idx) => (
+          {shapes.map((shape) => (
             <Link 
-              key={shape.name} 
+              key={shape.name}  
               href={`/diamonds?shape=${shape.name.toLowerCase()}`}
               className="group flex flex-col items-center gap-3 transition-all"
             >

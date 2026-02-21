@@ -29,14 +29,15 @@ export default function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = React.use(params);
-  const product = products.find((p) => p.slug === slug);
-  if (!product) return notFound();
-
+  
   const router = useRouter();
   const { addToCart, setIsCartOpen } = useCart();
   const [quantity, setQuantity] = React.useState(1);
   const [pincode, setPincode] = React.useState("");
   const [pincodeStatus, setPincodeStatus] = React.useState<"idle" | "checking" | "available" | "unavailable">("idle");
+
+  const product = products.find((p) => p.slug === slug);
+  if (!product) return notFound();
 
   const checkPincode = () => {
     if (!pincode || pincode.length < 6) return;
@@ -231,7 +232,7 @@ export default function ProductPage({
                   viewport={{ once: true }}
                   className="bg-gray-50 border-l-[1px] border-brilliant-green/40 p-10 space-y-4 max-w-xl"
                 >
-                  <span className="block font-serif text-brilliant-green/80 text-xs italic tracking-wider">Curator's Insight</span>
+                  <span className="block font-serif text-brilliant-green/80 text-xs italic tracking-wider">Curator&apos;s Insight</span>
                   <p className="font-sans text-gray-600 text-sm leading-relaxed italic">
                     {product.curatorNote}
                   </p>
@@ -311,7 +312,7 @@ export default function ProductPage({
                             <div className="h-[1px] w-full bg-gray-200" />
                             {g.cut && (
                               <p className="text-gray-600 text-sm leading-relaxed italic max-w-xl">
-                                The {g.cut.toLowerCase()} cut of this {g.name.toLowerCase()} is a testament to the artisan's skill in the {product.era} era.
+                                The {g.cut.toLowerCase()} cut of this {g.name.toLowerCase()} is a testament to the artisan&apos;s skill in the {product.era} era.
                               </p>
                             )}
                           </div>
@@ -349,7 +350,7 @@ export default function ProductPage({
                       <span className="font-serif text-gray-900 text-lg">{rev.name}</span>
                       <span className="text-gray-400 text-[10px] uppercase tracking-widest">{rev.date}</span>
                     </div>
-                    <p className="font-sans text-gray-600 text-sm leading-relaxed italic">"{rev.review}"</p>
+                    <p className="font-sans text-gray-600 text-sm leading-relaxed italic">&quot;{rev.review}&quot;</p>
                   </div>
                 ))}
               </div>

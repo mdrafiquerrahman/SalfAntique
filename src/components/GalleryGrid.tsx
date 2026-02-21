@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import ProductCard from "./ProductCard";
-import { products, Category, Era } from "../data/products";
+import { products } from "../data/products";
 
 const container = {
   hidden: { opacity: 0 },

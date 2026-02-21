@@ -1,5 +1,5 @@
 export type Era = "Victorian" | "Art Deco" | "Edwardian" | "Georgian" | "Retro";
-export type Category = "necklace" | "earrings" | "bangles" | "rings" | "pendants" | "bridal" | "bracelets";
+export type Category = "necklace" | "earrings" | "bangles" | "rings" | "pendants" | "bridal" | "bracelets" | "choker" | "long-necklace";
 
 export interface Gemstone {
   name: string;

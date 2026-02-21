@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     const resend = new Resend(apiKey);
     
     // 1. Send confirmation (Re-routed to admin for Sandbox mode)
-    const { data: userData, error: userError } = await resend.emails.send({
+    const { error: userError } = await resend.emails.send({
       from: 'Salf Antqe <onboarding@resend.dev>',
       to: ['rafiquerrahman66@gmail.com'], // Re-routed to your email to avoid 403 Sandbox error
       replyTo: email, // Subscriber's email for your reference

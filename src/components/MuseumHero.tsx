@@ -11,7 +11,7 @@ export default function MuseumHero() {
   const displayProducts = products.slice(0, 5); // Take first 5 products for the slider
 
   const paginate = (newDirection: number) => {
-    setPage([currentIndex + newDirection, newDirection]);
+    setPage((prev) => [prev[0] + newDirection, newDirection]);
   };
 
   const imageIndex = ((currentIndex % displayProducts.length) + displayProducts.length) % displayProducts.length;
@@ -21,7 +21,7 @@ export default function MuseumHero() {
       paginate(1);
     }, 5000); // Slide every 5 seconds
     return () => clearInterval(timer);
-  }, [currentIndex]);
+  }, []);
 
   const variants = {
     enter: (direction: number) => {
