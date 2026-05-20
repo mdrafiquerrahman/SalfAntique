@@ -170,6 +170,15 @@ export default function ContactFooter() {
           </div>
         </div>
       </div>
+
+      {/* Copyright */}
+      <div className="border-t border-muted-gold/10 py-8">
+        <div className="mx-auto max-w-5xl px-6 text-center">
+          <p className="text-parchment/60 text-xs uppercase tracking-widest">
+            © {new Date().getFullYear()} Ethenic Glitz. All rights reserved.
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }
