@@ -140,6 +140,7 @@ export default function NavBar() {
               <div className="flex gap-6 text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase">
                 <Link href="/office" className="hover:text-brilliant-green transition-colors">Our Office</Link>
                 <Link href="/support" className="hover:text-brilliant-green transition-colors">Support</Link>
+                <Link href="/refund-policy" className="hover:text-brilliant-green transition-colors">Refund Policy</Link>
               </div>
 
               {/* Center: Brand Logo */}
@@ -428,6 +429,13 @@ export default function NavBar() {
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Support
+                    </Link>
+                    <Link 
+                      href="/refund-policy" 
+                      className="text-sm font-bold tracking-widest text-gray-400 uppercase hover:text-brilliant-green transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Refund Policy
                     </Link>
                   </div>
                 </nav>
